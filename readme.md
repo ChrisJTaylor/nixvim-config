@@ -22,9 +22,9 @@ Nixified Neovim configuration using `nixvim`.
   ```
   
   ### Further info
-  [Nixvim documentation]: https://nix-community.github.io/nixvim/index.html
-  [Nixos]: https://nixos.org/
-  [Nix first steps]: https://nix.dev/tutorials/first-steps/
+  [Nixvim documentation](https://nix-community.github.io/nixvim/index.html)
+  [Nixos](https://nixos.org/)
+  [Nix first steps](https://nix.dev/tutorials/first-steps/)
   
   ------------------------
   * Not an exhaustive list
