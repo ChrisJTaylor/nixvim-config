@@ -22,8 +22,8 @@ Nixified Neovim configuration using `nixvim`.
   home.packages = [ inputs.nixvim-config.packages.${system}.default ];
   ```
   
-  ### Further info
-  [Nixvim documentation](https://nix-community.github.io/nixvim/index.html)
-  [Nixos](https://nixos.org/)
-  [Nix first steps](https://nix.dev/tutorials/first-steps/)
-  
+### Further info
+- [Nixvim documentation](https://nix-community.github.io/nixvim/index.html)
+- [Nixos](https://nixos.org/)
+- [Nix first steps](https://nix.dev/tutorials/first-steps/)
+
