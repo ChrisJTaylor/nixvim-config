@@ -266,28 +266,28 @@
     # coverage
     {
       mode = "n";
-      key = "<A-l>";
+      key = "<leader>ll";
       options.silent = true;
       action = "<cmd>:CoverageLoad<CR>";
       options.desc = "Load coverage";
     }
     {
       mode = "n";
-      key = "<A-s>";
+      key = "<leader>ls";
       options.silent = true;
       action = "<cmd>:CoverageShow<CR>";
       options.desc = "Show coverage";
     }
     {
       mode = "n";
-      key = "<A-d>";
+      key = "<leader>lm";
       options.silent = true;
       action = "<cmd>:CoverageSummary<CR>";
       options.desc = "Display coverage summary";
     }
     {
       mode = "n";
-      key = "<A-c>";
+      key = "<leader>lt";
       options.silent = true;
       action = "<cmd>:CoverageToggle<CR>";
       options.desc = "Toggle coverage";
