@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   plugins.lspsaga = {
     enable = true;
     lightbulb = {

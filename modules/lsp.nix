@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   plugins.lsp-status = {
     enable = true;
   };
@@ -16,8 +16,7 @@
     servers = {
       nil_ls = {
         enable = true;
-        settings = {
-        };
+        settings = { };
       };
       asm_lsp = {
         enable = true;

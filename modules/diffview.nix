@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   plugins.diffview = {
     enable = true;
 

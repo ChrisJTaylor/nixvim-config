@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   plugins.none-ls = {
     enable = true;
     enableLspFormat = true;
@@ -12,8 +12,7 @@
       formatting = {
         alejandra = {
           enable = true;
-          settings = {
-          };
+          settings = { };
         };
         just.enable = true;
         yamlfmt.enable = true;

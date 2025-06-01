@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   plugins.magma-nvim = {
     enable = true;
     settings = {

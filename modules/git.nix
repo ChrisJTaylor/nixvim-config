@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   plugins = {
     gitblame = {
       enable = true;

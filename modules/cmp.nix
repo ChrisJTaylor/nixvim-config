@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   plugins.dap = {
     enable = true;
     package = pkgs.vimPlugins.nvim-dap;
