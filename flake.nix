@@ -67,7 +67,14 @@
         ];
       in
       {
-        packages.default = myNixvim;
+        packages.default = myNixvim.overrideAttrs (oldAttrs: {
+          meta = {
+            description = "Nixvim configuration for Neovim";
+            homepage = "https://github.com/ChrisJTaylor/nixvim-config";
+            license = pkgs.lib.licenses.mit;
+            maintainers = [ "ChrisJTaylor" ];
+          };
+        });
 
         apps.default = mkApp {
           drv = myNixvim;

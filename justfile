@@ -20,4 +20,4 @@ check:
 
 # format nix files in the project
 format:
-    nix fmt
+    nix fmt .
