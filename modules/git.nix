@@ -1,5 +1,9 @@
 { ... }: {
   plugins = {
+    fugitive = {
+      enable = true;
+    };
+
     gitblame = {
       enable = true;
     };
