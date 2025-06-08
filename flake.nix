@@ -7,24 +7,22 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs =
-    inputs @ { self
-    , nixpkgs
-    , nixvim
-    , flake-utils
-    , ...
-    }:
-    let
-      inherit (flake-utils.lib) eachDefaultSystem mkApp;
-    in
+  outputs = inputs @ {
+    self,
+    nixpkgs,
+    nixvim,
+    flake-utils,
+    ...
+  }: let
+    inherit (flake-utils.lib) eachDefaultSystem mkApp;
+  in
     eachDefaultSystem (
-      system:
-      let
-        pkgs = import nixpkgs { inherit system; };
+      system: let
+        pkgs = import nixpkgs {inherit system;};
         makeNixvim = nixvim.legacyPackages.${system}.makeNixvim;
 
         myNixvim = makeNixvim {
-          extraPackages = [ pkgs.clang ];
+          extraPackages = [pkgs.clang];
 
           imports = [
             ./modules/_top-level.nix
@@ -45,8 +43,10 @@
             ./modules/magma.nix
             ./modules/none-ls-format.nix
             ./modules/testing.nix
+            ./modules/render-markdown.nix
             ./modules/coverage.nix
             ./modules/git.nix
+            ./modules/timerly.nix
             ./modules/devicons.nix
             ./modules/extraConfigLua.nix
             ./modules/zig.nix
@@ -65,14 +65,13 @@
           tree-sitter
           just
         ];
-      in
-      {
+      in {
         packages.default = myNixvim.overrideAttrs (oldAttrs: {
           meta = {
             description = "Nixvim configuration for Neovim";
             homepage = "https://github.com/ChrisJTaylor/nixvim-config";
             license = pkgs.lib.licenses.mit;
-            maintainers = [ "ChrisJTaylor" ];
+            maintainers = ["ChrisJTaylor"];
           };
         });
 
@@ -92,13 +91,13 @@
         formatter = pkgs.nixpkgs-fmt;
 
         checks = {
-          nixfmt = pkgs.runCommand "check-nixfmt" { buildInputs = [ pkgs.nixpkgs-fmt ]; } ''
+          nixfmt = pkgs.runCommand "check-nixfmt" {buildInputs = [pkgs.nixpkgs-fmt];} ''
             echo "Checking Nix formatting..."
             nixpkgs-fmt --check ${./modules} ${./flake.nix} || exit 1
             touch $out
           '';
 
-          stylua = pkgs.runCommand "check-stylua" { buildInputs = [ pkgs.stylua ]; } ''
+          stylua = pkgs.runCommand "check-stylua" {buildInputs = [pkgs.stylua];} ''
             echo "Checking Lua formatting..."
             stylua --check ${./modules} || exit 1
             touch $out

@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   globals = {
     mapleader = " ";
     maplocalleader = "<Tab>";
@@ -308,6 +308,15 @@
       options.silent = true;
       action = "<cmd>:LazyGit<CR>";
       options.desc = "LazyGit";
+    }
+
+    # utilities
+    {
+      mode = "n";
+      key = "<leader>t";
+      options.silent = true;
+      action = "<cmd>:TimerlyToggle<CR>";
+      options.desc = "Timerly";
     }
   ];
 }
