@@ -6,6 +6,7 @@
       hide_fillchars = true;
       italic_comments = true;
       terminal_colors = true;
+      editorconfig.enable = true;
       theme = {
         colors = {
           # bg = "#000000";
