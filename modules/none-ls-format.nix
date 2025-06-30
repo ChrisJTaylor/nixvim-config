@@ -14,7 +14,7 @@
           enable = true;
           settings = {};
         };
-        just.enable = true;
+        just.enable = false;
         yamlfmt.enable = false;
         csharpier.enable = true;
       };
