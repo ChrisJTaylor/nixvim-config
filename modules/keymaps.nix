@@ -318,5 +318,28 @@
       action = "<cmd>:TimerlyToggle<CR>";
       options.desc = "Timerly";
     }
+
+    # copilot
+    {
+      mode = "n";
+      key = "<leader>cc";
+      options.silent = true;
+      action = "<cmd>:CopilotChat<CR>";
+      options.desc = "Copilot Chat";
+    }
+    {
+      mode = "n";
+      key = "<leader>ce";
+      options.silent = true;
+      action = "<cmd>:CopilotChatExplain<CR>";
+      options.desc = "Explain selection";
+    }
+    {
+      mode = "n";
+      key = "<leader>cf";
+      options.silent = true;
+      action = "<cmd>:CopilotChatFix<CR>";
+      options.desc = "Fix this";
+    }
   ];
 }
