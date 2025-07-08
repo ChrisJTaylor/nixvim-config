@@ -106,13 +106,6 @@
     }
     {
       mode = "n";
-      key = "<leader>c";
-      options.silent = true;
-      action = "<C-w><C-q>";
-      options.desc = "Close window";
-    }
-    {
-      mode = "n";
       key = "<leader>m";
       options.silent = true;
       action = "<cmd>:marks<CR>";
@@ -340,6 +333,48 @@
       options.silent = true;
       action = "<cmd>:CopilotChatFix<CR>";
       options.desc = "Fix this";
+    }
+    {
+      mode = "n";
+      key = "<leader>cd";
+      options.silent = true;
+      action = "<cmd>:CopilotChatDocs<CR>";
+      options.desc = "Add documentation comments to the selected code";
+    }
+    {
+      mode = "n";
+      key = "<leader>cm";
+      options.silent = true;
+      action = "<cmd>:CopilotChatCommit<CR>";
+      options.desc = "Write commit message";
+    }
+    {
+      mode = "n";
+      key = "<leader>cr";
+      options.silent = true;
+      action = "<cmd>:CopilotChatReview<CR>";
+      options.desc = "Review code";
+    }
+    {
+      mode = "n";
+      key = "<leader>co";
+      options.silent = true;
+      action = "<cmd>:CopilotChatOptimize<CR>";
+      options.desc = "Optimize code";
+    }
+    {
+      mode = "n";
+      key = "<leader>ct";
+      options.silent = true;
+      action = "<cmd>:CopilotChatTests<CR>";
+      options.desc = "Write tests for the selected code";
+    }
+    {
+      mode = "n";
+      key = "<leader>cs";
+      options.silent = true;
+      action = "<cmd>:CopilotChatSave<CR>";
+      options.desc = "Save history";
     }
   ];
 }
