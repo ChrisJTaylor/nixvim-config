@@ -28,6 +28,7 @@
       python
       swift
       objc
+      ruby
     ];
 
     folding = false;

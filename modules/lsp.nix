@@ -165,6 +165,10 @@
         autostart = true;
         filetypes = ["swift"];
       };
+      solargraph = {
+        enable = true;
+        autostart = true;
+      };
     };
   };
 }
