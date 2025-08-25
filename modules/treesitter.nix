@@ -15,12 +15,19 @@
       xml
       yaml
       javascript
+      typescript
+      tsx
       java
       kotlin
       rust
       go
       zig
       asm
+      c
+      cpp
+      python
+      swift
+      objc
     ];
 
     folding = false;

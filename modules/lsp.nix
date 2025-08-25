@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   plugins.lsp-status = {
     enable = true;
   };
@@ -16,7 +16,7 @@
     servers = {
       nil_ls = {
         enable = true;
-        settings = { };
+        settings = {};
       };
       asm_lsp = {
         enable = true;
@@ -47,7 +47,18 @@
         enable = true;
         autostart = true;
         settings = {
-          configurationSources = "pycodestyle";
+          plugins = {
+            jedi_completion.enabled = true;
+            jedi_hover.enabled = true;
+            jedi_references.enabled = true;
+            jedi_signature_help.enabled = true;
+            jedi_symbols.enabled = true;
+            pycodestyle.enabled = false;
+            flake8.enabled = true;
+            autopep8.enabled = false;
+            yapf.enabled = false;
+            pylint.enabled = true;
+          };
         };
       };
       gopls = {
@@ -135,6 +146,24 @@
       zls = {
         enable = true;
         autostart = true;
+      };
+      bashls = {
+        enable = true;
+        autostart = true;
+      };
+      jdtls = {
+        enable = true;
+        autostart = true;
+      };
+      clangd = {
+        enable = true;
+        autostart = true;
+        filetypes = ["c" "cpp" "objc" "objcpp"];
+      };
+      sourcekit = {
+        enable = true;
+        autostart = true;
+        filetypes = ["swift"];
       };
     };
   };
