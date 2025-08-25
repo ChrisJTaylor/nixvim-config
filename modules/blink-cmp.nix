@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   plugins.blink-copilot.enable = true;
 
   plugins.blink-cmp = {
@@ -9,10 +9,28 @@
         default = [
           "lsp"
           "path"
-          # "luasnip"
+          "snippets"
           "buffer"
           "copilot"
         ];
+
+        completion = {
+          accept = {
+            create_undo_point = true;
+            auto_brackets = {
+              enabled = true;
+            };
+          };
+          documentation = {
+            auto_show = true;
+            treesitter_highlighting = true;
+          };
+          ghost_text.enabled = true;
+          menu = {
+            enabled = true;
+            auto_show = true;
+          };
+        };
 
         providers = {
           copilot = {
@@ -33,15 +51,15 @@
           };
         };
 
-        keymaps = {
-          "<C-b>" = [
+        keymap = {
+          "<C-f>" = [
             "scroll_documentation_up"
             "fallback"
           ];
           "<C-e>" = [
             "hide"
           ];
-          "<C-f>" = [
+          "<C-b>" = [
             "scroll_documentation_down"
             "fallback"
           ];
