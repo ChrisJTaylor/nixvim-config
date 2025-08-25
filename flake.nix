@@ -32,7 +32,6 @@
             ./modules/telescope.nix
             ./modules/treesitter.nix
             ./modules/frecency.nix
-            # ./modules/cmp.nix
             ./modules/blink-cmp.nix
             ./modules/copilot.nix
             ./modules/lazygit.nix
