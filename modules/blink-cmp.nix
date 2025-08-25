@@ -48,7 +48,7 @@
           "show_documentation"
           "hide_documentation"
         ];
-        "<Enter>" = [
+        "<C-CR>" = [
           "select_and_accept"
         ];
         "<Down>" = [
