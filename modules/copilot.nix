@@ -1,4 +1,12 @@
-{ ... }: {
+{...}: {
+  plugins.copilot-lua = {
+    enable = true;
+    settings = {
+      suggestion.enabled = false;
+      panel.enabled = false;
+    };
+  };
+
   plugins.copilot-chat = {
     enable = true;
 
@@ -44,27 +52,6 @@
       yank_diff = {
         normal = "gy";
         register = "\"";
-      };
-    };
-  };
-
-  plugins.copilot-lua = {
-    settings = {
-      panel = {
-        keymap = {
-          next = "<M-j>";
-          previous = "<M-k>";
-          accept = "<M-CR>";
-          close = "<M-ESC>";
-        };
-      };
-      suggestion = {
-        keymap = {
-          next = "<M-j>";
-          previous = "<M-k>";
-          accept = "<M-CR>";
-          close = "<M-ESC>";
-        };
       };
     };
   };
