@@ -1,31 +1,33 @@
-{ ... }: {
+{...}: {
   plugins.lspsaga = {
     enable = true;
-    lightbulb = {
-      enable = false;
-      virtualText = true;
-    };
-    symbolInWinbar = {
-      enable = true;
-      folderLevel = 1;
-      showFile = true;
-      colorMode = true;
-      hideKeyword = false;
-    };
-    definition = {
-      height = 0.5;
-      width = 0.6;
-    };
-    outline = {
-      autoPreview = true;
-      closeAfterJump = true;
-      detail = true;
-      autoClose = true;
-      layout = "float";
-      keys = {
-        jump = "e";
-        quit = "q";
-        toggleOrJump = "o";
+    settings = {
+      lightbulb = {
+        enable = false;
+        virtual_text = true;
+      };
+      definition = {
+        height = 0.5;
+        width = 0.6;
+      };
+      symbol_in_winbar = {
+        enable = true;
+        folder_level = 1;
+        show_file = true;
+        color_mode = true;
+        hide_keyword = false;
+      };
+      outline = {
+        auto_preview = true;
+        close_after_jump = true;
+        detail = true;
+        auto_close = true;
+        layout = "float";
+        keys = {
+          jump = "e";
+          quit = "q";
+          toggle_or_jump = "o";
+        };
       };
     };
   };
