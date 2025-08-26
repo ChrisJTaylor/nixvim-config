@@ -26,6 +26,21 @@
       python = {
         enable = true;
       };
+      jest = {
+        enable = true;
+        settings = {
+          jestCommand = "npm test --";
+          jestConfigFile = "jest.config.js";
+          env = { CI = true; };
+          cwd = "function(path) return vim.fn.getcwd() end";
+        };
+      };
+      vitest = {
+        enable = true;
+      };
+      zig = {
+        enable = true;
+      };
     };
 
     settings = {

@@ -250,10 +250,45 @@
     }
     {
       mode = "n";
+      key = "<leader>tf";
+      options.silent = true;
+      action = "<cmd>:lua require('neotest').run.run(vim.fn.expand('%'))<CR>";
+      options.desc = "Run current file tests";
+    }
+    {
+      mode = "n";
+      key = "<leader>tn";
+      options.silent = true;
+      action = "<cmd>:lua require('neotest').run.run()<CR>";
+      options.desc = "Run nearest test";
+    }
+    {
+      mode = "n";
+      key = "<leader>tl";
+      options.silent = true;
+      action = "<cmd>:lua require('neotest').run.run_last()<CR>";
+      options.desc = "Run last test";
+    }
+    {
+      mode = "n";
       key = "<leader>tw";
       options.silent = true;
       action = "<cmd>:lua require('neotest').watch.toggle(vim.fn.expand('%'))<CR>";
       options.desc = "Toggle watch current file (neotest)";
+    }
+    {
+      mode = "n";
+      key = "<leader>td";
+      options.silent = true;
+      action = "<cmd>:lua require('neotest').run.run({strategy = 'dap'})<CR>";
+      options.desc = "Debug nearest test";
+    }
+    {
+      mode = "n";
+      key = "<leader>to";
+      options.silent = true;
+      action = "<cmd>:Neotest output<CR>";
+      options.desc = "Show test output";
     }
 
     # coverage

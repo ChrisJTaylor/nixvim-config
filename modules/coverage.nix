@@ -2,7 +2,7 @@
   plugins.coverage = {
     enable = true;
     autoReload = true;
-    autoReloadTimeoutMs = 4000;
+    autoReloadTimeoutMs = 2000;
     commands = true;
     lang = {
       cs = {
@@ -17,7 +17,23 @@
       };
       go = {
         coverage_file = "coverage.out";
-        coverage_command = "coverprofile=coverage.out";
+        coverage_command = "go test -coverprofile=coverage.out";
+      };
+      rust = {
+        coverage_file = "target/tarpaulin/lcov.info";
+        coverage_command = "cargo tarpaulin --out Lcov";
+      };
+      java = {
+        coverage_file = "target/site/jacoco/jacoco.xml";
+      };
+      javascript = {
+        lcovFile = "coverage/lcov.info";
+      };
+      typescript = {
+        lcovFile = "coverage/lcov.info";
+      };
+      zig = {
+        coverage_file = "zig-out/coverage.lcov";
       };
     };
     highlights = {
@@ -35,6 +51,21 @@
       };
       summaryCursorLine = {
         link = "CursorLine";
+      };
+      summaryBorder = {
+        link = "FloatBorder";
+      };
+      summaryNormal = {
+        link = "NormalFloat";
+      };
+      summaryHeader = {
+        link = "Statement";
+      };
+      summaryPass = {
+        link = "DiagnosticOk";
+      };
+      summaryFail = {
+        link = "DiagnosticError";
       };
     };
     keymaps = {
