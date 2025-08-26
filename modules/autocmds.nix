@@ -22,23 +22,17 @@
             end";
       };
     }
+    # Combined Go LSP and auto-test on save
     {
       event = [ "BufWritePost" ];
       pattern = [ "*.go" ];
-      callback = {
-        __raw = "function()
-              vim.lsp.buf.execute_command({ command = 'gopls.workspace.reload' })
-            end";
-      };
-    }
-
-    # Auto-test on save for supported languages
-    {
-      event = [ "BufWritePost" ];
-      pattern = [ "*.cs" "*.csproj" "*.sln" ];
       group = "auto_test";
       callback = {
         __raw = "function()
+              -- LSP reload for Go
+              vim.lsp.buf.execute_command({ command = 'gopls.workspace.reload' })
+              
+              -- Auto-test with coverage
               local file = vim.fn.expand('%:p')
               vim.defer_fn(function()
                 require('neotest').run.run(file)
@@ -49,9 +43,11 @@
             end";
       };
     }
+
+    # Auto-test on save for other supported languages
     {
       event = [ "BufWritePost" ];
-      pattern = [ "*.go" ];
+      pattern = [ "*.cs" "*.csproj" "*.sln" ];
       group = "auto_test";
       callback = {
         __raw = "function()

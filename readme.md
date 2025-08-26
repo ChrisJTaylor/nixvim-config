@@ -135,7 +135,7 @@ home.packages = [ inputs.nixvim-config.packages.${system}.default ];
 |-----|--------|-------------|
 | `<leader>q` | `:q!` | Quit without saving |
 | `<leader>m` | `:marks` | List all marks |
-| `<leader>t` | `:TimerlyToggle` | Toggle time tracking |
+| `<leader>tm` | `:TimerlyToggle` | Toggle time tracking |
 | `<leader>rr` | Telescope refactoring | Show refactoring options |
 | `t` | `:Lspsaga term_toggle` | Toggle floating terminal |
 | `<ESC>` | `:nohlsearch` | Clear search highlights |

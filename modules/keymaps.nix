@@ -341,10 +341,10 @@
     # utilities
     {
       mode = "n";
-      key = "<leader>t";
+      key = "<leader>tm";
       options.silent = true;
       action = "<cmd>:TimerlyToggle<CR>";
-      options.desc = "Timerly";
+      options.desc = "Timerly toggle";
     }
 
     # copilot

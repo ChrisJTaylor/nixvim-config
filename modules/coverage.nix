@@ -17,7 +17,6 @@
       };
       go = {
         coverage_file = "coverage.out";
-        coverage_command = "go test -coverprofile=coverage.out";
       };
       rust = {
         coverage_file = "target/tarpaulin/lcov.info";
