@@ -1,37 +1,47 @@
-{ ... }: {
-  colorschemes.cyberdream = {
-    enable = true;
-    settings = {
-      borderless_telescope = true;
-      hide_fillchars = true;
-      italic_comments = true;
-      terminal_colors = true;
-      editorconfig.enable = true;
-      theme = {
-        colors = {
-          # bg = "#000000";
-          # bg_alt = "#44F24F";
-          # bg_highlight = "#ff5ef1";
-          # grey = "#0D0D0D";
-          # fg = "#ffffff";
-          # blue = "#34BF49";
-          # green = "#44F24F";
-          # cyan = "#44F24F";
-          # red = "#01260A";
-          # yellow = "#44F24F";
-          # magenta = "#ff5ef1";
-          # pink = "#ff5ea0";
-          # orange = "#12732A";
-          orange = "#44F24F";
-          # purple = "#bd5eff";
+{...}: {
+  colorschemes = {
+    kanagawa = {
+      enable = false;
+      settings = {
+        theme = {
+          transparent = true;
         };
-        highlights = {
-          Comment = {
-            bg = "#01260A";
-            fg = "#12732A";
+      };
+    };
+    cyberdream = {
+      enable = false;
+      settings = {
+        borderless_telescope = true;
+        hide_fillchars = true;
+        italic_comments = true;
+        terminal_colors = true;
+        editorconfig.enable = true;
+        theme = {
+          colors = {
+            # bg = "#000000";
+            # bg_alt = "#44F24F";
+            # bg_highlight = "#ff5ef1";
+            # grey = "#0D0D0D";
+            # fg = "#ffffff";
+            # blue = "#34BF49";
+            # green = "#44F24F";
+            # cyan = "#44F24F";
+            # red = "#01260A";
+            # yellow = "#44F24F";
+            # magenta = "#ff5ef1";
+            # pink = "#ff5ea0";
+            # orange = "#12732A";
+            orange = "#44F24F";
+            # purple = "#bd5eff";
           };
+          highlights = {
+            Comment = {
+              bg = "#01260A";
+              fg = "#12732A";
+            };
+          };
+          transparent = true;
         };
-        transparent = true;
       };
     };
   };
