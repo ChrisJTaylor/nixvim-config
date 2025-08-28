@@ -53,11 +53,11 @@
             jedi_references.enabled = true;
             jedi_signature_help.enabled = true;
             jedi_symbols.enabled = true;
-            pycodestyle.enabled = false;
+            pycodestyle.enabled = true;
             flake8.enabled = true;
             autopep8.enabled = false;
             yapf.enabled = false;
-            pylint.enabled = true;
+            pylint.enabled = false;
           };
         };
       };
