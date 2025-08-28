@@ -329,6 +329,56 @@
       action = "<cmd>:lua require('telescope').extensions.refactoring.refactors()<CR>";
       options.desc = "Refactorings";
     }
+    # Direct refactoring actions
+    {
+      mode = "x";
+      key = "<leader>re";
+      options.silent = true;
+      action = ":Refactor extract <CR>";
+      options.desc = "Extract function";
+    }
+    {
+      mode = "x";
+      key = "<leader>rf";
+      options.silent = true;
+      action = ":Refactor extract_to_file <CR>";
+      options.desc = "Extract to file";
+    }
+    {
+      mode = "x";
+      key = "<leader>rv";
+      options.silent = true;
+      action = ":Refactor extract_var <CR>";
+      options.desc = "Extract variable";
+    }
+    {
+      mode = "n";
+      key = "<leader>ri";
+      options.silent = true;
+      action = ":Refactor inline_var<CR>";
+      options.desc = "Inline variable";
+    }
+    {
+      mode = "n";
+      key = "<leader>rI";
+      options.silent = true;
+      action = ":Refactor inline_func<CR>";
+      options.desc = "Inline function";
+    }
+    {
+      mode = "n";
+      key = "<leader>rb";
+      options.silent = true;
+      action = ":Refactor extract_block<CR>";
+      options.desc = "Extract block";
+    }
+    {
+      mode = "n";
+      key = "<leader>rbf";
+      options.silent = true;
+      action = ":Refactor extract_block_to_file<CR>";
+      options.desc = "Extract block to file";
+    }
 
     {
       mode = "n";

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   plugins.treesitter = {
     enable = true;
 
@@ -31,7 +31,7 @@
       ruby
     ];
 
-    folding = false;
+    folding = true;
     nixvimInjections = true;
     nixGrammars = true;
     settings = {
