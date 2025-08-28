@@ -2,6 +2,7 @@
   plugins.blink-copilot.enable = true;
   plugins.blink-ripgrep.enable = true;
   plugins.blink-cmp-git.enable = true;
+  plugins.blink-cmp-dictionary.enable = true;
   plugins.blink-compat = {
     enable = true;
     settings = {
@@ -86,6 +87,7 @@
           "copilot"
           "ripgrep"
           "git"
+          "dictionary"
         ];
         providers = {
           ripgrep = {
@@ -130,6 +132,15 @@
             opts = {
               commit = {};
               git_centers = {git_hub = {};};
+            };
+          };
+          dictionary = {
+            module = "blink-cmp-dictionary";
+            name = "Dict";
+            score_offset = 100;
+            min_keyword_length = 3;
+            # Optional configurations
+            opts = {
             };
           };
         };
