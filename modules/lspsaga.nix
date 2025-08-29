@@ -11,7 +11,7 @@
         width = 0.6;
       };
       symbol_in_winbar = {
-        enable = true;
+        enable = false;
         folder_level = 1;
         show_file = true;
         color_mode = true;

@@ -461,5 +461,12 @@
       action = "<cmd>:CopilotChatSave<CR>";
       options.desc = "Save history";
     }
+    {
+      mode = "n";
+      key = "<leader>u";
+      options.silent = true;
+      action = "<cmd>:UndotreeToggle<CR>";
+      options.desc = "Show undo tree";
+    }
   ];
 }
