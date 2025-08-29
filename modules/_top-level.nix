@@ -1,10 +1,18 @@
 {...}: {
   colorschemes = {
-    kanagawa = {
-      enable = false;
+    tokyonight = {
+      enable = true;
       settings = {
-        theme = {
-          transparent = true;
+        style = "moon";
+        transparent = false;
+        styles = {
+          comments = {
+            italic = true;
+            bg = "#90FE13";
+            fg = "#FD12DD";
+          };
+          sidebars = "dark";
+          floats = "dark";
         };
       };
     };
