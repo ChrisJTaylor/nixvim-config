@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   plugins = {
     fugitive = {
       enable = true;
@@ -6,6 +6,9 @@
 
     gitblame = {
       enable = true;
+      settings = {
+        highlight_group = "Blame";
+      };
     };
 
     gitgutter = {

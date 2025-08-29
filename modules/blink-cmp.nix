@@ -64,12 +64,18 @@
           "select_next"
           "fallback"
         ];
+        "<Tab>" = [
+          "select_next"
+          "snippet_forward"
+          "fallback"
+        ];
         "<S-Tab>" = [
+          "select_prev"
           "snippet_backward"
           "fallback"
         ];
-        "<Tab>" = [
-          "snippet_forward"
+        "<CR>" = [
+          "select_and_accept"
           "fallback"
         ];
         "<Up>" = [
@@ -96,7 +102,7 @@
             name = "Ripgrep";
             score_offset = 100;
             opts = {
-              prefix_min_len = 3;
+              prefix_min_len = 0;
               context_size = 5;
               max_filesize = "1M";
               project_root_marker = ".git";
