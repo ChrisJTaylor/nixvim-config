@@ -9,6 +9,21 @@
 
   plugins.lsp-signature = {
     enable = true;
+    settings = {
+      always_trigger = true;
+      extra_trigger_chars = [
+        "("
+        ","
+      ];
+      hint_prefix = {
+        above = "↙ ";
+        below = "↖ ";
+        current = "← ";
+      };
+      padding = " ";
+      shadow_guibg = "#121315";
+      toggle_key = "<M-x>";
+    };
   };
 
   plugins.lsp = {
