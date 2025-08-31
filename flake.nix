@@ -51,6 +51,7 @@
             ./modules/zig.nix
             ./modules/smear-cursor.nix
             ./modules/vimwiki.nix
+            ./modules/colorising.nix
           ];
         };
 

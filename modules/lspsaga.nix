@@ -10,8 +10,21 @@
         height = 0.5;
         width = 0.6;
       };
+      implement = {
+        enable = true;
+        virtualText = true;
+      };
+      rename = {
+        autosave = true;
+        inSelect = true;
+        keys = {
+          exec = "<CR>";
+          quit = "<C-k>";
+          select = "<C-x>";
+        };
+      };
       symbol_in_winbar = {
-        enable = false;
+        enable = true;
         folder_level = 1;
         show_file = true;
         color_mode = true;
