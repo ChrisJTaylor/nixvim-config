@@ -35,7 +35,8 @@
     nixvimInjections = true;
     nixGrammars = true;
     settings = {
-      ensure_installed = "all";
+      ensure_installed = [ ];
+      auto_install = false;
     };
   };
 
