@@ -102,7 +102,7 @@
             name = "Ripgrep";
             score_offset = 100;
             opts = {
-              prefix_min_len = 0;
+              prefix_min_len = 2;
               context_size = 5;
               max_filesize = "1M";
               project_root_marker = ".git";
@@ -119,7 +119,7 @@
             async = true;
             module = "blink-copilot";
             name = "copilot";
-            score_offset = 100;
+            score_offset = 50;
             opts = {
               max_completions = 20;
               max_attempts = 4;
@@ -134,7 +134,7 @@
           git = {
             module = "blink-cmp-git";
             name = "git";
-            score_offset = 100;
+            score_offset = 75;
             opts = {
               commit = {};
               git_centers = {git_hub = {};};
