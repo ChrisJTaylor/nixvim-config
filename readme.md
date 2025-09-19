@@ -15,8 +15,17 @@ A comprehensive Neovim configuration built with nixvim, featuring modern develop
 - Full LSP integration with `lspsaga` for enhanced UI
 - Intelligent code completion with `blink-cmp`
 - Advanced syntax highlighting with `treesitter`
-- Multi-language formatting with `none-ls` and `lsp-format`
+- EditorConfig-aware formatting via `none-ls` and `lsp-format` (Prettier for JS/TS, shfmt for shell, alejandra for Nix; OmniSharp formats C#).
 - GitHub Copilot integration for AI-assisted coding
+
+## 🧰 Formatting & EditorConfig
+
+- Format on save: Enabled for LSP and none-ls sources.
+- EditorConfig: Respected for indent, EOL, final newline, trimming.
+- JS/TS: Prettier via none-ls (prettierd); tsserver formatting disabled to avoid conflicts. Prettier resolves config/plugins from your project. Ensure `prettier` and any plugins are in `devDependencies`.
+- C#: OmniSharp handles formatting and respects .editorconfig; csharpier is disabled.
+- Shell: shfmt with defaults `-i 2 -sr -bn` (switch to 4 spaces if preferred).
+- Nix: alejandra formats Nix files.
 
 ### **File Management & Navigation**
 - **Neo-tree** file explorer with git integration

@@ -4,7 +4,6 @@
     lspServersToEnable = [
       "omnisharp"
       "gleam"
-      "ts_ls"
       "gopls"
       "pylsp"
       "html"

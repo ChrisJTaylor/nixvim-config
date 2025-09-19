@@ -106,6 +106,8 @@
 
   plugins.which-key.enable = true;
 
+  editorconfig.enable = true;
+
   plugins.nix.enable = true;
   plugins.nix-develop.enable = true;
 
