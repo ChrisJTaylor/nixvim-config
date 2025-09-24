@@ -10,5 +10,16 @@
       followCurrentFile.enabled = true;
       followCurrentFile.leaveDirsOpen = true;
     };
+
+    settings = {
+      filesystem = {
+        filtered_items = {
+          visible = true;
+          hide_dotfiles = false;
+          hide_gitignored = false;
+          never_show = [ ".git" ];
+        };
+      };
+    };
   };
 }
