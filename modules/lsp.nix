@@ -151,8 +151,8 @@
         autostart = true;
       };
       yamlls = {
-        enable = true;
-        autostart = true;
+        enable = false;
+        autostart = false;
       };
       marksman = {
         enable = true;
