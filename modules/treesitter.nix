@@ -13,7 +13,6 @@
       vim
       vimdoc
       xml
-      yaml
       javascript
       typescript
       tsx
