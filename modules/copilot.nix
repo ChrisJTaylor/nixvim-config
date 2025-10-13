@@ -43,11 +43,8 @@
       
       # Window configuration
       window = {
-        layout = "float";
-        relative = "cursor";
-        width = 0.8;
-        height = 0.6;
-        row = 1;
+        layout = "vertical";
+        width = 0.4;  # 40% of screen width
       };
       
       # Auto-insert mode when opening chat
