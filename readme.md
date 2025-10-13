@@ -119,9 +119,14 @@ home.packages = [ inputs.nixvim-config.packages.${system}.default ];
 | `<leader>gg` | `:LazyGit` | Open LazyGit |
 
 ### **AI Assistant (Copilot)**
+
+**🔧 Configuration**: Copilot is configured with full repository awareness - when you open Neovim at your repo root, Copilot Chat has access to your entire codebase for context-aware assistance.
+
+**💡 Suggestions**: Inline suggestions are disabled by default to avoid intrusive completions, but can be enabled on-demand.
+
 | Key | Action | Description |
 |-----|--------|-------------|
-| `<leader>cc` | `:CopilotChat` | Open Copilot chat |
+| `<leader>cc` | `:CopilotChat` | Open Copilot chat (full repo context) |
 | `<leader>ce` | `:CopilotChatExplain` | Explain selected code |
 | `<leader>cf` | `:CopilotChatFix` | Fix selected code |
 | `<leader>cd` | `:CopilotChatDocs` | Generate documentation |
@@ -129,7 +134,8 @@ home.packages = [ inputs.nixvim-config.packages.${system}.default ];
 | `<leader>co` | `:CopilotChatOptimize` | Optimize code |
 | `<leader>ct` | `:CopilotChatTests` | Generate tests |
 | `<leader>cm` | `:CopilotChatCommit` | Generate commit message |
-| `<leader>cs` | `:CopilotChatSave` | Save chat history |
+| `<leader>cs` | Toggle auto-suggestions | Enable/disable inline suggestions |
+| `<C-Space>` | Manual suggestion trigger | Trigger suggestion in insert mode |
 
 ### **Window Management**
 | Key | Action | Description |

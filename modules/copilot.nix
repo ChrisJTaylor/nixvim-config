@@ -2,8 +2,32 @@
   plugins.copilot-lua = {
     enable = true;
     settings = {
-      suggestion.enabled = false;
+      suggestion = {
+        enabled = false;  # Keep disabled to avoid intrusive completions
+        auto_trigger = false;
+        debounce = 75;
+        keymap = {
+          accept = "<M-l>";
+          accept_word = false;
+          accept_line = false;
+          next = "<M-]>";
+          prev = "<M-[>";
+          dismiss = "<C-]>";
+        };
+      };
       panel.enabled = false;
+      
+      # Add workspace configuration for better context
+      copilot_node_command = "node";
+      server_opts_overrides = {
+        trace = "verbose";
+        settings = {
+          advanced = {
+            listCount = 10;
+            inlineSuggestCount = 3;
+          };
+        };
+      };
     };
   };
 
