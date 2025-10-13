@@ -39,12 +39,17 @@ A comprehensive Neovim configuration built with nixvim, featuring modern develop
 - **Render markdown** preview
 - **Vimwiki** for note-taking
 - **Timerly** time tracking integration
-- **Magma** Jupyter notebook support
+- **Magma** Jupyter notebook support (Linux only)
 
 ## 📋 Prerequisites
 - Nix with flakes enabled
 - Git
 - Basic terminal knowledge
+
+## 🖥️ Platform Support
+- ✅ **Linux**: Full support including Jupyter/Magma integration
+- ✅ **macOS**: Full support (Magma disabled due to ueberzug dependency)
+- ✅ **Windows**: Via WSL2
 
 ## 🛠️ Installation & Usage
 

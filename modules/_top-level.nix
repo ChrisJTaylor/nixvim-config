@@ -94,13 +94,7 @@
     };
   };
 
-  plugins.neo-tree = {
-    enable = true;
-    enableGitStatus = true;
-    enableModifiedMarkers = true;
-    enableRefreshOnWrite = true;
-    closeIfLastWindow = true;
-  };
+
 
   plugins.precognition.enable = false;
 

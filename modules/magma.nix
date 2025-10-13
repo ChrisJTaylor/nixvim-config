@@ -1,6 +1,6 @@
-{ ... }: {
+{ pkgs, ... }: {
   plugins.magma-nvim = {
-    enable = true;
+    enable = pkgs.stdenv.isLinux;
     settings = {
       automatically_open_output = true;
       cell_highlight_group = "CursorLine";

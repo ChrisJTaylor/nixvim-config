@@ -1,22 +1,26 @@
 { ... }: {
   plugins.neo-tree = {
     enable = true;
-    enableGitStatus = true;
-    enableModifiedMarkers = true;
-    enableRefreshOnWrite = true;
-    closeIfLastWindow = true;
+    settings = {
+      enable_git_status = true;
+      enable_modified_markers = true;
+      enable_refresh_on_write = true;
+      close_if_last_window = true;
 
-    buffers = {
-      followCurrentFile.enabled = true;
-      followCurrentFile.leaveDirsOpen = true;
-    };
+      buffers = {
+        follow_current_file = {
+          enabled = true;
+          leave_dirs_open = true;
+        };
+      };
 
-    filesystem = {
-      filteredItems = {
-        visible = true;
-        hideDotfiles = false;
-        hideGitignored = false;
-        neverShow = [ ".git" ];
+      filesystem = {
+        filtered_items = {
+          visible = true;
+          hide_dotfiles = false;
+          hide_gitignored = false;
+          never_show = [ ".git" ];
+        };
       };
     };
   };

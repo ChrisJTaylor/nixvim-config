@@ -320,6 +320,20 @@
       action = "<cmd>:CoverageToggle<CR>";
       options.desc = "Toggle coverage";
     }
+    {
+      mode = "n";
+      key = "<leader>mc";
+      options.silent = true;
+      action = "<cmd>:CoverageToggle<CR>";
+      options.desc = "Quick coverage toggle";
+    }
+    {
+      mode = "n";
+      key = "<leader>mx";
+      options.silent = true;
+      action = "<cmd>:CoverageSummary<CR>";
+      options.desc = "Quick coverage summary";
+    }
 
     # refactoring
     {
