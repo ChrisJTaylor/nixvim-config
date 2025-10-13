@@ -35,47 +35,64 @@
     enable = true;
 
     settings = {
-      accept_diff = {
-        insert = "<C-y>";
-        normal = "<C-y>";
+      # Model configuration for better context understanding
+      model = "gpt-4o";
+      
+      # Context configuration for repository awareness
+      context = "buffers";  # Include all open buffers for context
+      
+      # Window configuration
+      window = {
+        layout = "float";
+        relative = "cursor";
+        width = 0.8;
+        height = 0.6;
+        row = 1;
       };
-      close = {
-        insert = "<ESC>";
-        normal = "q";
-      };
-      complete = {
-        insert = "<Tab>";
-      };
-      jump_to_diff = {
-        normal = "gj";
-      };
-      quickfix_diffs = {
-        normal = "gq";
-      };
-      reset = {
-        insert = "<C-l>";
-        normal = "<C-l>";
-      };
-      show_context = {
-        normal = "gc";
-      };
-      show_diff = {
-        normal = "gd";
-      };
-      show_info = {
-        normal = "gi";
-      };
-      submit_prompt = {
-        insert = "<C-s>";
-        normal = "<CR>";
-      };
-      toggle_sticky = {
-        detail = "Makes line under cursor sticky or deletes sticky line.";
-        normal = "gr";
-      };
-      yank_diff = {
-        normal = "gy";
-        register = "\"";
+      
+      # Auto-insert mode when opening chat
+      auto_insert_mode = true;
+      
+      # Show help actions in chat
+      show_help = true;
+      
+      # Automatically include git information
+      auto_follow_cursor = false;
+      
+      # Keymaps
+      mappings = {
+        complete = {
+          insert = "<Tab>";
+        };
+        close = {
+          insert = "<ESC>";
+          normal = "q";
+        };
+        reset = {
+          insert = "<C-l>";
+          normal = "<C-l>";
+        };
+        submit_prompt = {
+          insert = "<C-s>";
+          normal = "<CR>";
+        };
+        accept_diff = {
+          insert = "<C-y>";
+          normal = "<C-y>";
+        };
+        show_diff = {
+          normal = "gd";
+        };
+        show_info = {
+          normal = "gi";
+        };
+        show_context = {
+          normal = "gc";
+        };
+        yank_diff = {
+          normal = "gy";
+          register = "\"";
+        };
       };
     };
   };

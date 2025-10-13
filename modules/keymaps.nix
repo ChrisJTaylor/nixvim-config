@@ -477,6 +477,13 @@
     }
     {
       mode = "n";
+      key = "<leader>crf";
+      options.silent = true;
+      action = "<cmd>:CopilotChatRefresh<CR>";
+      options.desc = "Refresh repository context";
+    }
+    {
+      mode = "n";
       key = "<leader>u";
       options.silent = true;
       action = "<cmd>:UndotreeToggle<CR>";

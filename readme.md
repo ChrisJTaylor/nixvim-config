@@ -125,7 +125,12 @@ home.packages = [ inputs.nixvim-config.packages.${system}.default ];
 
 ### **AI Assistant (Copilot)**
 
-**🔧 Configuration**: Copilot is configured with full repository awareness - when you open Neovim at your repo root, Copilot Chat has access to your entire codebase for context-aware assistance.
+**🔧 Enhanced Repository Awareness**: Copilot Chat is configured with full repository context including:
+- **GPT-4o model** for better understanding and responses
+- **Automatic workspace detection** when opening Neovim in your repo
+- **File pattern inclusion** (*.nix, *.md, flake.*, justfile, etc.)
+- **`.copilot-instructions.md`** with project-specific context
+- **Manual context refresh** if workspace changes
 
 **💡 Suggestions**: Inline suggestions are disabled by default to avoid intrusive completions, but can be enabled on-demand.
 
@@ -136,6 +141,7 @@ home.packages = [ inputs.nixvim-config.packages.${system}.default ];
 | `<leader>cf` | `:CopilotChatFix` | Fix selected code |
 | `<leader>cd` | `:CopilotChatDocs` | Generate documentation |
 | `<leader>cr` | `:CopilotChatReview` | Review code |
+| `<leader>crf` | `:CopilotChatRefresh` | Refresh repository context |
 | `<leader>co` | `:CopilotChatOptimize` | Optimize code |
 | `<leader>ct` | `:CopilotChatTests` | Generate tests |
 | `<leader>cm` | `:CopilotChatCommit` | Generate commit message |
