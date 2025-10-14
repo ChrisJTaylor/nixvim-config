@@ -53,17 +53,67 @@
                 local full_path = cwd .. "/" .. file
                 if vim.fn.filereadable(full_path) == 1 then
                   local ext = vim.fn.fnamemodify(file, ":e")
-                  -- Include relevant file types for nixvim config
-                  if ext == "nix" or ext == "md" or ext == "lua" or ext == "json" or 
-                     ext == "yaml" or ext == "yml" or ext == "toml" or 
-                     file == "justfile" or file:match("^flake%.") or file:match("^README") then
+                  -- Include common source code file types and exclude binary/generated files
+                  local skip_exts = { "png", "jpg", "jpeg", "gif", "ico", "svg", "webp", "mp4", "avi", "mov", "pdf", "zip", "tar", "gz", "exe", "dll", "so", "dylib", "class", "jar", "o", "obj", "pdb", "ilk", "exp", "lib", "a" }
+                  local skip_patterns = { "%.min%.", "%.bundle%.", "%.chunk%.", "%.map$", "%-lock%.", "%.lock$" }
+                  local skip_dirs = { "node_modules/", ".git/", "build/", "dist/", "target/", ".cache/", ".next/", ".nuxt/", "coverage/", ".nyc_output/", "vendor/" }
+                  
+                  -- Skip binary files and common build artifacts
+                  local should_skip = false
+                  for _, skip_ext in ipairs(skip_exts) do
+                    if ext == skip_ext then
+                      should_skip = true
+                      break
+                    end
+                  end
+                  
+                  if not should_skip then
+                    for _, pattern in ipairs(skip_patterns) do
+                      if file:match(pattern) then
+                        should_skip = true
+                        break
+                      end
+                    end
+                  end
+                  
+                  if not should_skip then
+                    for _, skip_dir in ipairs(skip_dirs) do
+                      if file:match("^" .. skip_dir) then
+                        should_skip = true
+                        break
+                      end
+                    end
+                  end
+                  
+                  if not should_skip and #files < 100 then -- Limit to 100 files for performance
                     table.insert(files, full_path)
                   end
                 end
               end
             else
-              -- Fallback to find if not in git repo
-              local find_files = vim.fn.systemlist("find " .. cwd .. " -name '*.nix' -o -name '*.md' -o -name '*.lua' -o -name '*.json' -o -name 'flake.*' -o -name 'justfile' 2>/dev/null | head -50")
+              -- Fallback to find if not in git repo - include common source file patterns
+              local find_patterns = {
+                "*.js", "*.ts", "*.jsx", "*.tsx", "*.py", "*.go", "*.rs", "*.java", "*.c", "*.cpp", "*.h", "*.hpp",
+                "*.rb", "*.php", "*.swift", "*.kt", "*.scala", "*.clj", "*.hs", "*.ml", "*.ex", "*.exs",
+                "*.sh", "*.bash", "*.zsh", "*.fish", "*.ps1", "*.bat", "*.cmd",
+                "*.html", "*.css", "*.scss", "*.sass", "*.less", "*.vue", "*.svelte",
+                "*.json", "*.yaml", "*.yml", "*.toml", "*.xml", "*.ini", "*.cfg", "*.conf",
+                "*.md", "*.rst", "*.txt", "*.org", "*.tex",
+                "*.sql", "*.graphql", "*.proto", "*.thrift",
+                "*.nix", "*.lua", "*.vim", "*.vimrc", "*.tmux.conf",
+                "Makefile", "Dockerfile", "Jenkinsfile", "Vagrantfile", "Gemfile", "Podfile",
+                "*.gradle", "*.maven", "*.sbt", "build.gradle", "pom.xml", "package.json", "Cargo.toml", "go.mod",
+                "flake.*", "justfile", "README*", "LICENSE*", "CHANGELOG*", "CONTRIBUTING*"
+              }
+              
+              local find_cmd = "find " .. cwd .. " \\( -name node_modules -o -name .git -o -name build -o -name dist -o -name target \\) -prune -o -type f \\( "
+              for i, pattern in ipairs(find_patterns) do
+                if i > 1 then find_cmd = find_cmd .. " -o " end
+                find_cmd = find_cmd .. "-name '" .. pattern .. "'"
+              end
+              find_cmd = find_cmd .. " \\) -print 2>/dev/null | head -100"
+              
+              local find_files = vim.fn.systemlist(find_cmd)
               for _, file in ipairs(find_files) do
                 if vim.fn.filereadable(file) == 1 then
                   table.insert(files, file)
