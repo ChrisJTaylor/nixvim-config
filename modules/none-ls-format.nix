@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   plugins.none-ls = {
     enable = true;
     enableLspFormat = true;
@@ -12,7 +12,7 @@
       formatting = {
         alejandra = {
           enable = true;
-          settings = {};
+          settings = { };
         };
         # Prefer OmniSharp over csharpier for .editorconfig compliance
         csharpier.enable = false;
@@ -27,7 +27,7 @@
           settings = {
             # Use 2-space indent by default; editorconfig sets buffer shiftwidth
             # None-ls can't read buffer opts here, so choose a sane default
-            extra_args = ["-i" "2" "-sr" "-bn"]; 
+            extra_args = [ "-i" "2" "-sr" "-bn" ];
           };
         };
         just.enable = false;

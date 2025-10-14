@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   plugins.blink-copilot.enable = true;
   plugins.blink-ripgrep.enable = true;
   plugins.blink-cmp-git.enable = true;
@@ -108,10 +108,10 @@
               project_root_marker = ".git";
               project_root_fallback = true;
               search_casing = "--ignore-case";
-              additional_rg_options = {};
+              additional_rg_options = { };
               fallback_to_regex_highlighting = true;
-              ignore_paths = {};
-              additional_paths = {};
+              ignore_paths = { };
+              additional_paths = { };
               debug = false;
             };
           };
@@ -136,8 +136,8 @@
             name = "git";
             score_offset = 75;
             opts = {
-              commit = {};
-              git_centers = {git_hub = {};};
+              commit = { };
+              git_centers = { git_hub = { }; };
             };
           };
           dictionary = {
@@ -146,8 +146,7 @@
             score_offset = 100;
             min_keyword_length = 3;
             # Optional configurations
-            opts = {
-            };
+            opts = { };
           };
         };
       };

@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   colorschemes = {
     tokyonight = {
       enable = true;
