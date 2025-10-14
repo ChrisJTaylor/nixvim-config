@@ -39,7 +39,7 @@
       model = "gpt-4o";
       
       # Context configuration for repository awareness
-      context = "buffers";  # Include all open buffers for context
+      context = "files";  # Include all project files for context
       
       # Window configuration
       window = {
@@ -55,6 +55,40 @@
       
       # Automatically include git information
       auto_follow_cursor = false;
+      
+      # File inclusion patterns for repository scanning
+      prompts = {
+        Explain = {
+          prompt = "/COPILOT_EXPLAIN Write an explanation for the active selection as paragraphs of text.";
+        };
+        Review = {
+          prompt = "/COPILOT_REVIEW Review the selected code.";
+        };
+        Fix = {
+          prompt = "/COPILOT_GENERATE There is a problem in this code. Rewrite the code to show it with the bug fixed.";
+        };
+        Optimize = {
+          prompt = "/COPILOT_GENERATE Optimize the selected code to improve performance and readability.";
+        };
+        Docs = {
+          prompt = "/COPILOT_GENERATE Please add documentation comment for the selection.";
+        };
+        Tests = {
+          prompt = "/COPILOT_GENERATE Please generate tests for my code.";
+        };
+        FixDiagnostic = {
+          prompt = "Please assist with the following diagnostic issue in file";
+          selection = "diagnostics";
+        };
+        Commit = {
+          prompt = "Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit and write the body of the message as a list.";
+          selection = "gitdiff";
+        };
+        CommitStaged = {
+          prompt = "Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit and write the body of the message as a list.";
+          selection = "gitdiff";
+        };
+      };
       
       # Keymaps
       mappings = {
@@ -90,6 +124,34 @@
           normal = "gy";
           register = "\"";
         };
+      };
+      
+      # Selection configuration for better file discovery
+      selection = {
+        # Include files matching these patterns
+        include = [
+          "*.nix"
+          "*.md"
+          "*.lua"
+          "*.json"
+          "*.yaml" 
+          "*.yml"
+          "flake.*"
+          "justfile"
+          "README*"
+          "*.toml"
+        ];
+        # Exclude common build/cache directories
+        exclude = [
+          "result*"
+          ".git/"
+          "node_modules/"
+          ".direnv/"
+          "target/"
+          "build/"
+          "dist/"
+          ".cache/"
+        ];
       };
     };
   };

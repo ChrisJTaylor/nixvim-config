@@ -477,9 +477,9 @@
     }
     {
       mode = "n";
-      key = "<leader>crf";
+      key = "<leader>cr";
       options.silent = true;
-      action = "<cmd>:CopilotChatRefresh<CR>";
+      action = "<cmd>:CopilotRefresh<CR>";
       options.desc = "Refresh repository context";
     }
     {

@@ -14,35 +14,15 @@
       },
     }
 
-    -- Configure Copilot workspace settings for better repo awareness
+    -- Configure workspace settings for better LSP and Copilot integration
     vim.api.nvim_create_autocmd("VimEnter", {
       callback = function()
         local cwd = vim.fn.getcwd()
-        -- Set workspace folder for better context
+        
+        -- Set workspace folder for Copilot
         vim.g.copilot_workspace_folders = { cwd }
         
-        -- Configure Copilot Chat for repository awareness
-        local copilot_chat = require('CopilotChat')
-        if copilot_chat and copilot_chat.setup then
-          -- Ensure Chat understands the repository structure
-          vim.g.copilot_chat_config = vim.tbl_deep_extend("force", vim.g.copilot_chat_config or {}, {
-            context = {
-              workspace = cwd,
-              git_root = vim.fn.system("git rev-parse --show-toplevel 2>/dev/null"):gsub("\\n", ""),
-              include_patterns = {
-                "*.nix",
-                "*.md", 
-                "flake.*",
-                "justfile",
-                "*.json",
-                "*.yaml",
-                "*.yml"
-              }
-            }
-          })
-        end
-        
-        -- Also add to LSP workspace folders if any LSP clients are active
+        -- Add to LSP workspace folders if any LSP clients are active
         vim.defer_fn(function()
           local clients = vim.lsp.get_active_clients()
           for _, client in ipairs(clients) do
@@ -55,26 +35,20 @@
       end,
     })
 
-    -- Ensure Copilot has access to the full repository context
-    vim.api.nvim_create_autocmd("BufEnter", {
+    -- Ensure Copilot workspace is updated when changing directories
+    vim.api.nvim_create_autocmd("DirChanged", {
       callback = function()
         local cwd = vim.fn.getcwd()
         vim.g.copilot_workspace_folders = { cwd }
-        
-        -- Update Chat context for current directory
-        if vim.g.copilot_chat_config then
-          vim.g.copilot_chat_config.context = vim.g.copilot_chat_config.context or {}
-          vim.g.copilot_chat_config.context.workspace = cwd
-        end
       end,
     })
 
-    -- Add command to manually refresh Copilot Chat context
-    vim.api.nvim_create_user_command("CopilotChatRefresh", function()
+    -- Add command to manually refresh Copilot workspace context
+    vim.api.nvim_create_user_command("CopilotRefresh", function()
       local cwd = vim.fn.getcwd()
       vim.g.copilot_workspace_folders = { cwd }
-      print("Copilot Chat context refreshed for: " .. cwd)
-    end, { desc = "Refresh Copilot Chat repository context" })
+      print("Copilot workspace refreshed for: " .. cwd)
+    end, { desc = "Refresh Copilot workspace context" })
 
     -- Add manual Copilot suggestion trigger (Ctrl+Space)
     vim.keymap.set('i', '<C-Space>', function()
