@@ -463,6 +463,20 @@
     }
     {
       mode = "n";
+      key = "<leader>ci";
+      options.silent = true;
+      action = "<cmd>:CopilotChatContext<CR>";
+      options.desc = "Show CopilotChat context info";
+    }
+    {
+      mode = "n";
+      key = "<leader>ca";
+      options.silent = true;
+      action = "<cmd>:CopilotChatOpen<CR>";
+      options.desc = "Open CopilotChat with full context";
+    }
+    {
+      mode = "n";
       key = "<leader>ct";
       options.silent = true;
       action = "<cmd>:CopilotChatTests<CR>";

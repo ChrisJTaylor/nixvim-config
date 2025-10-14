@@ -46,9 +46,12 @@
             local cwd = vim.fn.getcwd()
             local files = {}
             
+            print("CopilotChat: Loading context from " .. cwd)
+            
             -- Get files from git if in a git repo
             local git_files = vim.fn.systemlist("git ls-files 2>/dev/null")
             if vim.v.shell_error == 0 then
+              print("CopilotChat: Found git repository, indexing files...")
               for _, file in ipairs(git_files) do
                 local full_path = cwd .. "/" .. file
                 if vim.fn.filereadable(full_path) == 1 then
@@ -85,12 +88,14 @@
                     end
                   end
                   
-                  if not should_skip and #files < 100 then -- Limit to 100 files for performance
+                  if not should_skip and #files < 200 then -- Increased limit to 200 files
                     table.insert(files, full_path)
                   end
                 end
               end
+              print("CopilotChat: Indexed " .. #files .. " source files from git repository")
             else
+              print("CopilotChat: Not a git repository, using find fallback...")
               -- Fallback to find if not in git repo - include common source file patterns
               local find_patterns = {
                 "*.js", "*.ts", "*.jsx", "*.tsx", "*.py", "*.go", "*.rs", "*.java", "*.c", "*.cpp", "*.h", "*.hpp",
@@ -111,7 +116,7 @@
                 if i > 1 then find_cmd = find_cmd .. " -o " end
                 find_cmd = find_cmd .. "-name '" .. pattern .. "'"
               end
-              find_cmd = find_cmd .. " \\) -print 2>/dev/null | head -100"
+              find_cmd = find_cmd .. " \\) -print 2>/dev/null | head -200"
               
               local find_files = vim.fn.systemlist(find_cmd)
               for _, file in ipairs(find_files) do
@@ -119,6 +124,7 @@
                   table.insert(files, file)
                 end
               end
+              print("CopilotChat: Indexed " .. #files .. " source files using find")
             end
             
             return files
