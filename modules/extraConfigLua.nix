@@ -22,29 +22,6 @@
         -- Set workspace folder for Copilot
         vim.g.copilot_workspace_folders = { cwd }
         
-        -- Check if nvim was opened with '.' argument to auto-open CopilotChat
-        local args = vim.fn.argv()
-        local opened_with_dot = false
-        for _, arg in ipairs(args) do
-          if arg == "." then
-            opened_with_dot = true
-            break
-          end
-        end
-        
-        if opened_with_dot then
-          -- Delay opening CopilotChat to ensure plugins are loaded
-          vim.defer_fn(function()
-            -- Check if CopilotChat command exists
-            if vim.api.nvim_create_user_command then
-              pcall(function()
-                vim.cmd("CopilotChat")
-                print("CopilotChat opened automatically - full codebase context loaded!")
-              end)
-            end
-          end, 2000) -- 2 second delay to ensure everything is loaded
-        end
-        
         -- Add to LSP workspace folders if any LSP clients are active
         vim.defer_fn(function()
           local clients = vim.lsp.get_active_clients()

@@ -127,7 +127,7 @@ home.packages = [ inputs.nixvim-config.packages.${system}.default ];
 
 **🔧 Enhanced Repository Awareness**: Copilot Chat is configured with full repository context including:
 - **GPT-4o model** for better understanding and responses
-- **Automatic workspace detection** when opening Neovim in your repo
+- **Automatic workspace detection** for repository context
 - **File pattern inclusion** (*.nix, *.md, flake.*, justfile, etc.)
 - **`.copilot-instructions.md`** with project-specific context
 - **Manual context refresh** if workspace changes
@@ -147,6 +147,22 @@ home.packages = [ inputs.nixvim-config.packages.${system}.default ];
 | `<leader>cm` | `:CopilotChatCommit` | Generate commit message |
 | `<leader>cs` | Toggle auto-suggestions | Enable/disable inline suggestions |
 | `<C-Space>` | Manual suggestion trigger | Trigger suggestion in insert mode |
+
+#### **Chat Panel Controls**
+When in the Copilot Chat panel:
+
+| Key | Mode | Action | Description |
+|-----|------|--------|-------------|
+| `<ESC>` | Insert | Close chat panel | Dismisses the entire chat panel |
+| `<C-c>` | Insert | Exit insert mode | Leave insert mode (stay in panel) |
+| `<Enter>` | Normal | Submit prompt | Send your message to Copilot |
+| `<C-s>` | Insert | Submit prompt | Send your message to Copilot |
+| `<C-l>` | Both | Reset chat | Clear current conversation |
+| `<C-y>` | Both | Accept diff | Apply suggested code changes |
+| `q` | Normal | Close chat panel | Dismisses the entire chat panel |
+| `gd` | Normal | Show diff | View suggested changes |
+| `gi` | Normal | Show info | Display chat information |
+| `gc` | Normal | Show context | View current context files |
 
 ### **Window Management**
 | Key | Action | Description |
