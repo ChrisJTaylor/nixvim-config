@@ -42,8 +42,8 @@
           bg = "#4a622e";
         };
         partial = {
-          fg = "#AA71F0";
-          bg = "#452d64";
+          fg = "#FFB347";
+          bg = "#664a2e";
         };
         uncovered = {
           fg = "#F07178";

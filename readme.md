@@ -6,7 +6,10 @@ A comprehensive Neovim configuration built with nixvim, featuring modern develop
 
 ### **Testing & Coverage (NCrunch-like Experience)**
 - **Auto-test-on-save** for all supported languages
-- **Real-time coverage visualization** with inline highlights
+- **Real-time coverage visualization** with inline highlights:
+  - 🟢 **Green**: Fully covered lines
+  - 🟠 **Orange**: Partially covered lines  
+  - 🔴 **Red**: Uncovered lines
 - **Comprehensive language support**: C#/.NET, Go, Python, Ruby, Rust, Java, JavaScript/TypeScript, Zig
 - **Interactive test panel** with neotest integration
 - **Automatic coverage reload** after test completion
@@ -199,7 +202,7 @@ The configuration provides NCrunch-style continuous testing:
 
 - **Automatic test execution** when saving files
 - **Real-time coverage updates** after tests complete
-- **Visual feedback** with inline coverage highlights
+- **Visual feedback** with color-coded coverage highlights (🟢 covered, 🟠 partial, 🔴 uncovered)
 - **Support for multiple test frameworks** per language
 
 ### Supported Languages & Frameworks
