@@ -491,6 +491,28 @@
     }
     {
       mode = "n";
+      key = "<leader>cp";
+      options.silent = true;
+      action = "<cmd>:CopilotChatProjectOverview<CR>";
+      options.desc = "Project overview with context";
+    }
+    {
+      mode = "n";
+      key = "<leader>cA";
+      options.silent = true;
+      action = "<cmd>:CopilotChatCodeAnalysis<CR>";
+      options.desc = "Code analysis and suggestions";
+    }
+    {
+      mode = "n";
+      key = "<leader>cH";
+      options.silent = true;
+      action = "<cmd>:CopilotChatProjectHelp<CR>";
+      options.desc = "Project structure help";
+    }
+
+    {
+      mode = "n";
       key = "<leader>cr";
       options.silent = true;
       action = "<cmd>:CopilotRefresh<CR>";

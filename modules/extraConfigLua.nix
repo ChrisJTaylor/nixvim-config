@@ -50,22 +50,26 @@
       print("Copilot workspace refreshed for: " .. cwd)
     end, { desc = "Refresh Copilot workspace context" })
 
-    -- Add command to open CopilotChat with full context
+    -- Add command to open CopilotChat with project context using new resource syntax
     vim.api.nvim_create_user_command("CopilotChatOpen", function()
-      vim.cmd("CopilotChat")
-      print("CopilotChat opened with full codebase context!")
-    end, { desc = "Open CopilotChat with full codebase context" })
+      vim.cmd("CopilotChat #glob:**/* #glob:**/*.md #glob:**/*.txt #glob:**/*.json #glob:**/*.yaml #glob:**/*.yml Hi! I'm working on this codebase. Can you see the file structure and help me understand the project?")
+      print("CopilotChat opened with full project context using resource syntax!")
+    end, { desc = "Open CopilotChat with project context" })
 
-    -- Add command to show how many files are being indexed
+    -- Add command to show project information using new resource syntax
     vim.api.nvim_create_user_command("CopilotChatContext", function()
       local cwd = vim.fn.getcwd()
       local git_files = vim.fn.systemlist("git ls-files 2>/dev/null")
       if vim.v.shell_error == 0 then
-        print("CopilotChat has access to " .. #git_files .. " files in this git repository")
+        print("CopilotChat can access " .. #git_files .. " files using resource syntax")
+        print("Examples: #glob:**/*.py #glob:**/*.js #glob:**/*.rs #glob:**/*.go")
+        print("          #buffer:active (current file) | #gitdiff:staged (git changes)")
+        print("          @copilot (enable AI tools for search/edit)")
       else
-        print("CopilotChat will scan for source files in: " .. cwd)
+        print("CopilotChat will use resource syntax like #glob:**/* to access files in: " .. cwd)
+        print("Try: #glob:**/*.ext for specific file types, or #buffer:active for current file")
       end
-    end, { desc = "Show CopilotChat context information" })
+    end, { desc = "Show CopilotChat resource syntax information" })
 
     -- Add manual Copilot suggestion trigger (Ctrl+Space)
     vim.keymap.set('i', '<C-Space>', function()

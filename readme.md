@@ -125,27 +125,38 @@ home.packages = [ inputs.nixvim-config.packages.${system}.default ];
 
 ### **AI Assistant (Copilot)**
 
-**🔧 Enhanced Repository Awareness**: Copilot Chat is configured with full repository context including:
+**🔧 Resource-Based Context System**: Copilot Chat uses a modern resource syntax for explicit codebase access:
 - **GPT-4o model** for better understanding and responses
-- **Automatic workspace detection** for repository context
-- **File pattern inclusion** (*.nix, *.md, flake.*, justfile, etc.)
+- **Resource syntax**: `#glob:**/*.py` (Python), `#glob:**/*.rs` (Rust), `#glob:**/*.js` (JavaScript), etc.
+- **Universal patterns**: `#buffer:active` (current file), `#gitdiff:staged` (git changes), `#glob:**/*` (all files)
+- **Tool access**: `@copilot` gives AI access to functions like file editing, bash commands, and search
+- **Explicit control**: You choose exactly what context to share with each conversation
 - **`.copilot-instructions.md`** with project-specific context
-- **Manual context refresh** if workspace changes
 
 **💡 Suggestions**: Inline suggestions are disabled by default to avoid intrusive completions, but can be enabled on-demand.
 
+**🚀 Quick Examples** (works with any language):
+- `#glob:**/*.py What is this Python project structure?` - See all Python files
+- `#glob:**/*.rs #glob:**/*.toml Analyze this Rust project` - Rust code + config files
+- `#buffer:active #glob:**/*.go Help with this Go code` - Current file + Go project context
+- `@copilot Can you search for TODO items and fix them?` - Let AI use search/edit tools
+
 | Key | Action | Description |
 |-----|--------|-------------|
-| `<leader>cc` | `:CopilotChat` | Open Copilot chat (full repo context) |
+| `<leader>cc` | `:CopilotChat` | Open Copilot chat |
+| `<leader>ca` | `:CopilotChatOpen` | Open chat with project context |
+| `<leader>ci` | `:CopilotChatContext` | Show resource syntax help |
+| `<leader>cp` | `:CopilotChatProjectOverview` | Project overview with context |
+| `<leader>cA` | `:CopilotChatCodeAnalysis` | Analyze codebase for improvements |
+| `<leader>cH` | `:CopilotChatProjectHelp` | Project structure help |
 | `<leader>ce` | `:CopilotChatExplain` | Explain selected code |
 | `<leader>cf` | `:CopilotChatFix` | Fix selected code |
 | `<leader>cd` | `:CopilotChatDocs` | Generate documentation |
 | `<leader>cr` | `:CopilotChatReview` | Review code |
-| `<leader>crf` | `:CopilotChatRefresh` | Refresh repository context |
 | `<leader>co` | `:CopilotChatOptimize` | Optimize code |
 | `<leader>ct` | `:CopilotChatTests` | Generate tests |
 | `<leader>cm` | `:CopilotChatCommit` | Generate commit message |
-| `<leader>cs` | Toggle auto-suggestions | Enable/disable inline suggestions |
+| `<leader>cs` | `:CopilotChatSave` | Save chat history |
 | `<C-Space>` | Manual suggestion trigger | Trigger suggestion in insert mode |
 
 #### **Chat Panel Controls**

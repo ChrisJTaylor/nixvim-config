@@ -38,100 +38,6 @@
       # Model configuration for better context understanding
       model = "gpt-4o";
 
-      # Context configuration for repository awareness
-      context = {
-        __raw = ''
-          function(bufnr, win_type)
-            -- Get all files in the current working directory for chat context
-            local cwd = vim.fn.getcwd()
-            local files = {}
-
-            print("CopilotChat: Loading context from " .. cwd)
-
-            -- Get files from git if in a git repo
-            local git_files = vim.fn.systemlist("git ls-files 2>/dev/null")
-            if vim.v.shell_error == 0 then
-              print("CopilotChat: Found git repository, indexing files...")
-              for _, file in ipairs(git_files) do
-                local full_path = cwd .. "/" .. file
-                if vim.fn.filereadable(full_path) == 1 then
-                  local ext = vim.fn.fnamemodify(file, ":e")
-                  -- Include common source code file types and exclude binary/generated files
-                  local skip_exts = { "png", "jpg", "jpeg", "gif", "ico", "svg", "webp", "mp4", "avi", "mov", "pdf", "zip", "tar", "gz", "exe", "dll", "so", "dylib", "class", "jar", "o", "obj", "pdb", "ilk", "exp", "lib", "a" }
-                  local skip_patterns = { "%.min%.", "%.bundle%.", "%.chunk%.", "%.map$", "%-lock%.", "%.lock$" }
-                  local skip_dirs = { "node_modules/", ".git/", "build/", "dist/", "target/", ".cache/", ".next/", ".nuxt/", "coverage/", ".nyc_output/", "vendor/" }
-
-                  -- Skip binary files and common build artifacts
-                  local should_skip = false
-                  for _, skip_ext in ipairs(skip_exts) do
-                    if ext == skip_ext then
-                      should_skip = true
-                      break
-                    end
-                  end
-
-                  if not should_skip then
-                    for _, pattern in ipairs(skip_patterns) do
-                      if file:match(pattern) then
-                        should_skip = true
-                        break
-                      end
-                    end
-                  end
-
-                  if not should_skip then
-                    for _, skip_dir in ipairs(skip_dirs) do
-                      if file:match("^" .. skip_dir) then
-                        should_skip = true
-                        break
-                      end
-                    end
-                  end
-
-                  if not should_skip and #files < 200 then -- Increased limit to 200 files
-                    table.insert(files, full_path)
-                  end
-                end
-              end
-              print("CopilotChat: Indexed " .. #files .. " source files from git repository")
-            else
-              print("CopilotChat: Not a git repository, using find fallback...")
-              -- Fallback to find if not in git repo - include common source file patterns
-              local find_patterns = {
-                "*.js", "*.ts", "*.jsx", "*.tsx", "*.py", "*.go", "*.rs", "*.java", "*.c", "*.cpp", "*.h", "*.hpp",
-                "*.rb", "*.php", "*.swift", "*.kt", "*.scala", "*.clj", "*.hs", "*.ml", "*.ex", "*.exs",
-                "*.sh", "*.bash", "*.zsh", "*.fish", "*.ps1", "*.bat", "*.cmd", "*.kt",
-                "*.html", "*.css", "*.scss", "*.sass", "*.less", "*.vue", "*.svelte",
-                "*.json", "*.yaml", "*.yml", "*.toml", "*.xml", "*.ini", "*.cfg", "*.conf",
-                "*.md", "*.rst", "*.txt", "*.org", "*.tex",
-                "*.sql", "*.graphql", "*.proto", "*.thrift",
-                "*.nix", "*.lua", "*.vim", "*.vimrc", "*.tmux.conf", "*.zig",
-                "Makefile", "Dockerfile", "Jenkinsfile", "Vagrantfile", "Gemfile", "Podfile",
-                "*.gradle", "*.maven", "*.sbt", "build.gradle", "pom.xml", "package.json", "Cargo.toml", "go.mod",
-                "flake.*", "justfile", "README*", "LICENSE*", "CHANGELOG*", "CONTRIBUTING*"
-              }
-
-              local find_cmd = "find " .. cwd .. " \\( -name node_modules -o -name .git -o -name build -o -name dist -o -name target \\) -prune -o -type f \\( "
-              for i, pattern in ipairs(find_patterns) do
-                if i > 1 then find_cmd = find_cmd .. " -o " end
-                find_cmd = find_cmd .. "-name '" .. pattern .. "'"
-              end
-              find_cmd = find_cmd .. " \\) -print 2>/dev/null | head -200"
-
-              local find_files = vim.fn.systemlist(find_cmd)
-              for _, file in ipairs(find_files) do
-                if vim.fn.filereadable(file) == 1 then
-                  table.insert(files, file)
-                end
-              end
-              print("CopilotChat: Indexed " .. #files .. " source files using find")
-            end
-
-            return files
-          end
-        '';
-      };
-
       # Window configuration
       window = {
         layout = "vertical";
@@ -147,7 +53,7 @@
       # Automatically include git information
       auto_follow_cursor = false;
 
-      # File inclusion patterns for repository scanning
+      # Enhanced prompts with resource syntax for better context
       prompts = {
         Explain = {
           prompt = "/COPILOT_EXPLAIN Write an explanation for the active selection as paragraphs of text.";
@@ -176,6 +82,16 @@
         CommitStaged = {
           prompt = "Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit and write the body of the message as a list.";
           selection = "gitdiff";
+        };
+        # New prompts that showcase resource usage for any project type
+        ProjectOverview = {
+          prompt = "#glob:**/* #glob:**/*.md #glob:**/*.txt #glob:**/*.json Please provide an overview of this project, including its structure, main features, and technology stack.";
+        };
+        CodeAnalysis = {
+          prompt = "#glob:**/* Analyze this codebase and suggest improvements, optimizations, or best practices based on the programming languages used.";
+        };
+        ProjectHelp = {
+          prompt = "#buffer:active #glob:**/* Help me understand this code and how it fits into the overall project structure and architecture.";
         };
       };
 
