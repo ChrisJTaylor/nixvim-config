@@ -8,7 +8,6 @@
       "pylsp"
       "html"
       "terraformls"
-      "bashls"
       "rust_analyzer"
       "kotlin_language_server"
       "lua_ls"
