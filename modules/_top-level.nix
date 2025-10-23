@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   colorschemes = {
     tokyonight = {
       enable = true;
@@ -11,8 +11,8 @@
             bg = "#90FE13";
             fg = "#FD12DD";
           };
-          sidebars = "dark";
-          floats = "dark";
+          sidebars = "normal";
+          floats = "normal";
         };
       };
     };
@@ -93,8 +93,6 @@
       };
     };
   };
-
-
 
   plugins.precognition.enable = false;
 
