@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   plugins.copilot-lua = {
     enable = true;
     settings = {
@@ -58,7 +58,7 @@
         Explain = {
           prompt = "/COPILOT_EXPLAIN Write an explanation for the active selection as paragraphs of text.";
         };
-        Review = {prompt = "/COPILOT_REVIEW Review the selected code.";};
+        Review = { prompt = "/COPILOT_REVIEW Review the selected code."; };
         Fix = {
           prompt = "/COPILOT_GENERATE There is a problem in this code. Rewrite the code to show it with the bug fixed.";
         };
@@ -97,7 +97,7 @@
 
       # Keymaps
       mappings = {
-        complete = {insert = "<Tab>";};
+        complete = { insert = "<Tab>"; };
         close = {
           insert = "<ESC>";
           normal = "q";
@@ -114,9 +114,9 @@
           insert = "<C-y>";
           normal = "<C-y>";
         };
-        show_diff = {normal = "gd";};
-        show_info = {normal = "gi";};
-        show_context = {normal = "gc";};
+        show_diff = { normal = "gd"; };
+        show_info = { normal = "gi"; };
+        show_context = { normal = "gc"; };
         yank_diff = {
           normal = "gy";
           register = ''"'';

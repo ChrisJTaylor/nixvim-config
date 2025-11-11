@@ -50,13 +50,15 @@
 
   plugins.treesitter-refactor = {
     enable = true;
-    highlightCurrentScope.enable = true;
-    highlightDefinitions = {
-      enable = true;
-      clearOnCursorMove = true;
+    settings = {
+      highlight_current_scope.enable = true;
+      highlight_definitions = {
+        enable = true;
+        clear_on_cursor_move = true;
+      };
+      navigation.enable = true;
+      smart_rename.enable = true;
     };
-    navigation.enable = true;
-    smartRename.enable = true;
   };
 
   plugins.refactoring.enable = true;
