@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   colorschemes = {
     tokyonight = {
       enable = true;
@@ -54,7 +54,10 @@
     };
   };
 
-  clipboard.providers.xclip.enable = true;
+  clipboard.providers = {
+    xclip.enable = pkgs.stdenv.isLinux;
+    # macOS uses built-in pbcopy/pbpaste, no provider needed
+  };
 
   opts = {
     number = true;

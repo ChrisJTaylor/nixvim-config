@@ -24,7 +24,10 @@
         makeNixvim = nixvim.legacyPackages.${system}.makeNixvim;
 
         myNixvim = makeNixvim {
-          extraPackages = [ pkgs.clang ];
+          extraPackages = [ pkgs.clang ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
+            pkgs.xclip # X11 clipboard
+            pkgs.wl-clipboard # Wayland clipboard  
+          ];
 
           imports = [
             ./modules/_top-level.nix
