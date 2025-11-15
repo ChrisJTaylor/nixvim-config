@@ -1,54 +1,66 @@
 { pkgs, ... }: {
   colorschemes = {
     tokyonight = {
-      enable = true;
-      settings = {
-        style = "moon";
-        transparent = false;
-        styles = {
-          comments = {
-            italic = true;
-            bg = "#90FE13";
-            fg = "#FD12DD";
-          };
-          sidebars = "normal";
-          floats = "normal";
-        };
-      };
+      enable = false;
     };
     cyberdream = {
-      enable = false;
+      enable = true;
       settings = {
+        # Enhanced space-age configuration
+        transparent = true;
         borderless_telescope = true;
         hide_fillchars = true;
         italic_comments = true;
         terminal_colors = true;
-        editorconfig.enable = true;
-        theme = {
-          colors = {
-            # bg = "#000000";
-            # bg_alt = "#44F24F";
-            # bg_highlight = "#ff5ef1";
-            # grey = "#0D0D0D";
-            # fg = "#ffffff";
-            # blue = "#34BF49";
-            # green = "#44F24F";
-            # cyan = "#44F24F";
-            # red = "#01260A";
-            # yellow = "#44F24F";
-            # magenta = "#ff5ef1";
-            # pink = "#ff5ea0";
-            # orange = "#12732A";
-            orange = "#44F24F";
-            # purple = "#bd5eff";
+
+        # Space-age color palette
+        colors = {
+          # Deep space backgrounds
+          bg = "#0a0a0a";
+          bg_alt = "#111111";
+          bg_highlight = "#1a1a1a";
+
+          # Enhanced neon colors for space-age vibes
+          cyan = "#5ef1ff";
+          magenta = "#ff5ef1";
+          blue = "#5ea1ff";
+          green = "#5eff6c";
+          purple = "#bd5eff";
+          yellow = "#f1ff5e";
+          orange = "#ffbd5e";
+          pink = "#ff5ea0";
+          red = "#ff6e5e";
+        };
+
+        # Enhanced highlights with your comment requirements
+        highlights = {
+          # Your specific requirement: purple comments with bright green background
+          Comment = {
+            fg = "#bd5eff"; # Purple text
+            bg = "#5eff6c"; # Green background
+            italic = true;
           };
-          highlights = {
-            Comment = {
-              bg = "#01260A";
-              fg = "#12732A";
-            };
+
+          # Enhanced space-age highlights
+          Normal = {
+            bg = "#0a0a0a";
           };
-          transparent = true;
+
+          # Make floating windows more space-age
+          NormalFloat = {
+            bg = "#111111";
+          };
+
+          # Enhance visual elements
+          CursorLine = {
+            bg = "#1a1a1a";
+          };
+
+          # Make selection more vibrant
+          Visual = {
+            bg = "#ff5ef1";
+            fg = "#0a0a0a";
+          };
         };
       };
     };
@@ -56,7 +68,6 @@
 
   clipboard.providers = {
     xclip.enable = pkgs.stdenv.isLinux;
-    # macOS uses built-in pbcopy/pbpaste, no provider needed
   };
 
   opts = {
@@ -72,8 +83,14 @@
     splitbelow = true;
     scrolloff = 10;
     hlsearch = true;
+    termguicolors = true;
+    background = "dark";
+    # Space-age transparency effects
+    winblend = 15; # Transparent floating windows
+    pumblend = 15; # Transparent popups
   };
 
+  # Simplified snacks configuration - disable dashboard to fix lazy.stats error
   plugins.snacks = {
     enable = true;
     settings = {
@@ -81,8 +98,7 @@
         enabled = true;
       };
       notifier = {
-        enabled = true;
-        timeout = 3000;
+        enabled = false; # Keep disabled to avoid conflicts
       };
       quickfile = {
         enabled = false;
@@ -94,18 +110,17 @@
         debounce = 100;
         enabled = true;
       };
+      dashboard = {
+        enabled = false; # Disable to fix lazy.stats error
+      };
     };
   };
 
   plugins.precognition.enable = false;
-
   plugins.which-key.enable = true;
-
   editorconfig.enable = true;
-
   plugins.nix.enable = true;
   plugins.nix-develop.enable = true;
-
   plugins.rainbow-delimiters.enable = true;
 
   plugins.undotree = {
@@ -130,6 +145,125 @@
       TreeSplitShape = "/";
       TreeVertShape = "|";
       WindowLayout = 4;
+    };
+  };
+
+  # Enable Alpha dashboard with space-age theme (NixVim compatible)
+  plugins.alpha = {
+    enable = true;
+    settings = {
+      layout = [
+        {
+          type = "padding";
+          val = 2;
+        }
+        {
+          type = "text";
+          val = [
+            "        ███╗   ███╗ █████╗  ██████╗██╗  ██╗██╗███╗   ██╗ ██████╗ ██╗      ██████╗  ██████╗██╗   ██╗        "
+            "        ████╗ ████║██╔══██╗██╔════╝██║  ██║██║████╗  ██║██╔═══██╗██║     ██╔═══██╗██╔════╝╚██╗ ██╔╝        "
+            "        ██╔████╔██║███████║██║     ███████║██║██╔██╗ ██║██║   ██║██║     ██║   ██║██║  ███╗╚████╔╝         "
+            "        ██║╚██╔╝██║██╔══██║██║     ██╔══██║██║██║╚██╗██║██║   ██║██║     ██║   ██║██║   ██║ ╚██╔╝          "
+            "        ██║ ╚═╝ ██║██║  ██║╚██████╗██║  ██║██║██║ ╚████║╚██████╔╝███████╗╚██████╔╝╚██████╔╝  ██║           "
+            "        ╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝ ╚═════╝  ╚═════╝   ╚═╝           "
+            "                                                                                                           "
+            "                        ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗                               "
+            "                        ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║                               "
+            "                        ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║                               "
+            "                        ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║                               "
+            "                        ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║                               "
+            "                        ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝                               "
+          ];
+          opts = {
+            position = "center";
+            hl = "Function"; # Use Function highlight for space-age cyan color
+          };
+        }
+        {
+          type = "padding";
+          val = 2;
+        }
+        {
+          type = "group";
+          val = [
+            {
+              type = "button";
+              val = "  New File";
+              on_press.__raw = "function() vim.cmd('enew') end";
+              opts = {
+                shortcut = "n";
+                position = "center";
+                cursor = 3;
+                width = 50;
+                align_shortcut = "right";
+                hl_shortcut = "Keyword";
+              };
+            }
+            {
+              type = "button";
+              val = "  Find File";
+              on_press.__raw = "function() require('telescope.builtin').find_files() end";
+              opts = {
+                shortcut = "f";
+                position = "center";
+                cursor = 3;
+                width = 50;
+                align_shortcut = "right";
+                hl_shortcut = "Keyword";
+              };
+            }
+            {
+              type = "button";
+              val = "  Recent Files";
+              on_press.__raw = "function() require('telescope.builtin').oldfiles() end";
+              opts = {
+                shortcut = "r";
+                position = "center";
+                cursor = 3;
+                width = 50;
+                align_shortcut = "right";
+                hl_shortcut = "Keyword";
+              };
+            }
+            {
+              type = "button";
+              val = "  Quit";
+              on_press.__raw = "function() vim.cmd('qa') end";
+              opts = {
+                shortcut = "q";
+                position = "center";
+                cursor = 3;
+                width = 50;
+                align_shortcut = "right";
+                hl_shortcut = "Keyword";
+              };
+            }
+          ];
+          opts = {
+            spacing = 1;
+          };
+        }
+        {
+          type = "padding";
+          val = 2;
+        }
+      ];
+    };
+  };
+  plugins.noice.enable = false;
+  plugins.notify.enable = false;
+
+  # Add indent guides for clean tech look
+  plugins.indent-blankline = {
+    enable = true;
+    settings = {
+      indent = {
+        char = "▏"; # Thin, minimal lines for that clean tech look
+      };
+      scope = {
+        char = "▎"; # Slightly thicker for scope
+        highlight = "Function";
+      };
     };
   };
 }

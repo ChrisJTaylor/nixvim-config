@@ -24,7 +24,7 @@
         
         -- Add to LSP workspace folders if any LSP clients are active
         vim.defer_fn(function()
-          local clients = vim.lsp.get_active_clients()
+          local clients = vim.lsp.get_clients()
           for _, client in ipairs(clients) do
             if client.server_capabilities.workspaceFolders then
               vim.lsp.buf.add_workspace_folder(cwd)
