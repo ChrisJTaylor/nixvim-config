@@ -16,13 +16,14 @@
 - **Module structure**: Each feature in separate `.nix` file under `modules/`
 - **Imports**: Add new modules to `flake.nix` imports array (lines 32-61)
 - **Naming**: Use kebab-case for files, camelCase for Nix attributes
-- **Leader key**: Space (`<leader>` = `" "`)
+- **Function syntax**: `{ ... }: { }` pattern for module definitions
+- **Leader key**: Space (`<leader>` = `" "`), local leader is `<Tab>`
 - **Platform support**: Linux (full), macOS (no Magma), Windows WSL
 
 ## Error Handling & Testing
 - Test configuration with `nix build` before committing
 - Use neotest for multi-language testing (dotnet, go, java, rust, python, jest, vitest, zig)
-- Automated checks: nixpkgs-fmt and stylua formatting validation
+- Automated checks: nixpkgs-fmt and stylua formatting validation via `nix flake check`
 - Ensure cross-platform compatibility (Linux/macOS/Windows WSL)
 - Check existing `.copilot-instructions.md` for comprehensive context
 

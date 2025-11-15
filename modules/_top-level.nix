@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   colorschemes = {
     tokyonight = {
       enable = false;
@@ -36,9 +36,8 @@
         highlights = {
           # Your specific requirement: purple comments with bright green background
           Comment = {
-            fg = "#bd5eff"; # Purple text
+            fg = "#6f1daa"; # Purple text
             bg = "#5eff6c"; # Green background
-            italic = true;
           };
 
           # Enhanced space-age highlights
@@ -148,7 +147,7 @@
     };
   };
 
-  # Enable Alpha dashboard with space-age theme (NixVim compatible)
+  # Enhanced Alpha dashboard with animated neon title  
   plugins.alpha = {
     enable = true;
     settings = {

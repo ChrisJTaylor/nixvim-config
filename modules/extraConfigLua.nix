@@ -81,5 +81,91 @@
       require('copilot.suggestion').toggle_auto_trigger()
       print("Copilot auto-trigger toggled")
     end, { desc = 'Toggle Copilot auto-trigger' })
+
+    -- Animated Neon Title for MACHINOLOGY NEOVIM
+    local neon_colors = {
+      "Function",    -- Cyan
+      "String",      -- Green  
+      "Keyword",     -- Purple/Magenta
+      "Number",      -- Orange
+      "Type",        -- Blue
+      "Special",     -- Pink/Red
+    }
+    
+    local current_color = 1
+    local animation_timer = nil
+    
+    -- Function to update alpha title color
+    local function update_title_color()
+      if vim.g.alpha_displayed then
+        local alpha = require('alpha')
+        local config = alpha.default_config
+        
+        -- Find the title section and update its highlight
+        for _, section in ipairs(config.layout) do
+          if section.type == "text" and section.val and #section.val > 5 then
+            section.opts = section.opts or {}
+            section.opts.hl = neon_colors[current_color]
+            break
+          end
+        end
+        
+        -- Only redraw if alpha buffer is visible
+        local buffers = vim.api.nvim_list_bufs()
+        for _, buf in ipairs(buffers) do
+          local buf_name = vim.api.nvim_buf_get_name(buf)
+          if string.match(buf_name, "alpha") or vim.bo[buf].filetype == "alpha" then
+            if vim.api.nvim_buf_is_loaded(buf) then
+              vim.schedule(function()
+                pcall(alpha.redraw)
+              end)
+            end
+            break
+          end
+        end
+        
+        -- Cycle to next color
+        current_color = (current_color % #neon_colors) + 1
+      end
+    end
+    
+    -- Start animation when Alpha opens
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "AlphaReady",
+      callback = function()
+        vim.g.alpha_displayed = true
+        if animation_timer then
+          animation_timer:stop()
+        end
+        animation_timer = vim.loop.new_timer()
+        animation_timer:start(0, 800, vim.schedule_wrap(update_title_color)) -- Change color every 800ms
+      end,
+    })
+    
+    -- Stop animation when leaving Alpha
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "AlphaClosed",
+      callback = function()
+        vim.g.alpha_displayed = false
+        if animation_timer then
+          animation_timer:stop()
+          animation_timer = nil
+        end
+      end,
+    })
+    
+    -- Also stop animation when buffer changes away from Alpha
+    vim.api.nvim_create_autocmd({"BufLeave", "BufDelete"}, {
+      callback = function()
+        local ft = vim.bo.filetype
+        if ft == "alpha" then
+          vim.g.alpha_displayed = false
+          if animation_timer then
+            animation_timer:stop()
+            animation_timer = nil
+          end
+        end
+      end,
+    })
   '';
 }
