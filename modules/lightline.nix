@@ -20,7 +20,7 @@
           ]
         ];
       };
-      colorscheme = "one";
+      colorscheme = "darcula"; # Works well with both GUI and terminal profiles
       component = {
         charvaluehex = "0x%B";
         lineinfo = "%3l:%-2v%<";

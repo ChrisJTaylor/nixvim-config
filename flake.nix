@@ -58,6 +58,46 @@
             ./modules/vimwiki.nix
             ./modules/colorising.nix
             ./modules/highlight.nix
+            ./modules/gui-profile.nix  # GUI-optimized settings
+          ];
+        };
+
+        myNixvimTerminal = makeNixvim {
+          extraPackages = [ pkgs.clang ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
+            pkgs.xclip # X11 clipboard
+            pkgs.wl-clipboard # Wayland clipboard  
+          ];
+
+          imports = [
+            ./modules/_top-level.nix
+            ./modules/keymaps.nix
+            ./modules/autocmds.nix
+            ./modules/autosave.nix
+            ./modules/telescope.nix
+            ./modules/treesitter.nix
+            ./modules/frecency.nix
+            ./modules/blink-cmp.nix
+            ./modules/copilot.nix
+            ./modules/lazygit.nix
+            ./modules/lsp.nix
+            ./modules/lsp-format.nix
+            ./modules/neotree.nix
+            ./modules/lspsaga.nix
+            ./modules/magma.nix
+            ./modules/none-ls-format.nix
+            ./modules/testing.nix
+            ./modules/render-markdown.nix
+            ./modules/coverage.nix
+            ./modules/git.nix
+            ./modules/timerly.nix
+            ./modules/devicons.nix
+            ./modules/extraConfigLua.nix
+            ./modules/zig.nix
+            ./modules/smear-cursor.nix
+            ./modules/vimwiki.nix
+            ./modules/colorising.nix
+            ./modules/highlight.nix
+            ./modules/terminal-profile.nix  # Terminal-optimized settings
           ];
         };
 
@@ -75,7 +115,16 @@
       {
         packages.default = myNixvim.overrideAttrs (oldAttrs: {
           meta = {
-            description = "Nixvim configuration for Neovim";
+            description = "Nixvim configuration for Neovim (GUI-optimized)";
+            homepage = "https://github.com/ChrisJTaylor/nixvim-config";
+            license = pkgs.lib.licenses.mit;
+            maintainers = [ "ChrisJTaylor" ];
+          };
+        });
+
+        packages.terminal = myNixvimTerminal.overrideAttrs (oldAttrs: {
+          meta = {
+            description = "Nixvim configuration for Neovim (Terminal-optimized)";
             homepage = "https://github.com/ChrisJTaylor/nixvim-config";
             license = pkgs.lib.licenses.mit;
             maintainers = [ "ChrisJTaylor" ];
@@ -84,6 +133,11 @@
 
         apps.default = mkApp {
           drv = myNixvim;
+          name = "nvim";
+        };
+
+        apps.terminal = mkApp {
+          drv = myNixvimTerminal;
           name = "nvim";
         };
 

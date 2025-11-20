@@ -19,10 +19,13 @@
 - **Function syntax**: `{ ... }: { }` pattern for module definitions
 - **Leader key**: Space (`<leader>` = `" "`), local leader is `<Tab>`
 - **Platform support**: Linux (full), macOS (no Magma), Windows WSL
+- **Git integration**: Uses diffview for merge conflicts and git diffs, lightline for statusline
+- **UI modules**: neotree (file explorer), telescope (fuzzy finder), render-markdown, smear-cursor
 
 ## Error Handling & Testing
 - Test configuration with `nix build` before committing
-- Use neotest for multi-language testing (dotnet, go, java, rust, python, jest, vitest, zig)
+- Use neotest for multi-language testing (dotnet, go, java, rust, python, jest, vitest, zig, rspec, plenary)
+- Available test commands: `:lua require("neotest").run.run()` (single test), `:lua require("neotest").run.run(vim.fn.expand("%"))` (file), `:lua require("neotest").summary.toggle()` (summary)
 - Automated checks: nixpkgs-fmt and stylua formatting validation via `nix flake check`
 - Ensure cross-platform compatibility (Linux/macOS/Windows WSL)
 - Check existing `.copilot-instructions.md` for comprehensive context

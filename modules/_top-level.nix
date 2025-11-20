@@ -7,7 +7,7 @@
       enable = true;
       settings = {
         # Enhanced space-age configuration
-        transparent = true;
+        # Profile-specific transparency settings are handled in gui-profile.nix / terminal-profile.nix
         borderless_telescope = true;
         hide_fillchars = true;
         italic_comments = true;
@@ -84,9 +84,7 @@
     hlsearch = true;
     termguicolors = true;
     background = "dark";
-    # Space-age transparency effects
-    winblend = 15; # Transparent floating windows
-    pumblend = 15; # Transparent popups
+    # Profile-specific transparency settings (winblend/pumblend) are handled in profile modules
   };
 
   # Simplified snacks configuration - disable dashboard to fix lazy.stats error
