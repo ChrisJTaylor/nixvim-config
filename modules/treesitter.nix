@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   plugins.treesitter = {
     enable = true;
 
@@ -25,7 +25,6 @@
       c
       cpp
       python
-      swift
       objc
       ruby
     ];
@@ -34,7 +33,7 @@
     nixvimInjections = true;
     nixGrammars = true;
     settings = {
-      ensure_installed = [ ];
+      ensure_installed = [];
       auto_install = false;
     };
   };

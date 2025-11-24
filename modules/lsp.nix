@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   plugins.lsp-status = {
     enable = true;
   };
@@ -31,7 +31,7 @@
     servers = {
       nil_ls = {
         enable = true;
-        settings = { };
+        settings = {};
       };
       asm_lsp = {
         enable = true;
@@ -173,12 +173,7 @@
       clangd = {
         enable = true;
         autostart = true;
-        filetypes = [ "c" "cpp" "objc" "objcpp" ];
-      };
-      sourcekit = {
-        enable = true;
-        autostart = true;
-        filetypes = [ "swift" ];
+        filetypes = ["c" "cpp" "objc" "objcpp"];
       };
       solargraph = {
         enable = true;
