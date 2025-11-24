@@ -26,7 +26,6 @@
         myNixvim = makeNixvim {
           extraPackages = [ pkgs.clang ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
             pkgs.xclip # X11 clipboard
-            pkgs.wl-clipboard # Wayland clipboard  
           ];
 
           imports = [
@@ -65,7 +64,6 @@
         myNixvimTerminal = makeNixvim {
           extraPackages = [ pkgs.clang ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
             pkgs.xclip # X11 clipboard
-            pkgs.wl-clipboard # Wayland clipboard  
           ];
 
           imports = [
