@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   plugins.lsp-status = {
     enable = true;
   };
@@ -31,7 +31,7 @@
     servers = {
       nil_ls = {
         enable = true;
-        settings = {};
+        settings = { };
       };
       asm_lsp = {
         enable = true;
@@ -59,20 +59,20 @@
         };
       };
       pylsp = {
+        enable = false; # Disabled in favor of pyright
+        autostart = false;
+      };
+      pyright = {
         enable = true;
         autostart = true;
         settings = {
-          plugins = {
-            jedi_completion.enabled = true;
-            jedi_hover.enabled = true;
-            jedi_references.enabled = true;
-            jedi_signature_help.enabled = true;
-            jedi_symbols.enabled = true;
-            pycodestyle.enabled = true;
-            flake8.enabled = true;
-            autopep8.enabled = false;
-            yapf.enabled = false;
-            pylint.enabled = false;
+          python = {
+            analysis = {
+              autoSearchPaths = true;
+              useLibraryCodeForTypes = true;
+              diagnosticMode = "workspace";
+              typeCheckingMode = "basic";
+            };
           };
         };
       };
@@ -173,7 +173,7 @@
       clangd = {
         enable = true;
         autostart = true;
-        filetypes = ["c" "cpp" "objc" "objcpp"];
+        filetypes = [ "c" "cpp" "objc" "objcpp" ];
       };
       solargraph = {
         enable = true;

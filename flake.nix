@@ -24,7 +24,11 @@
         makeNixvim = nixvim.legacyPackages.${system}.makeNixvim;
 
         myNixvim = makeNixvim {
-          extraPackages = [ pkgs.clang ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
+          extraPackages = [
+            pkgs.clang
+            pkgs.pyright # Python language server
+            pkgs.python3 # Python interpreter
+          ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
             pkgs.xclip # X11 clipboard
           ];
 
@@ -57,12 +61,16 @@
             ./modules/vimwiki.nix
             ./modules/colorising.nix
             ./modules/highlight.nix
-            ./modules/gui-profile.nix  # GUI-optimized settings
+            ./modules/gui-profile.nix # GUI-optimized settings
           ];
         };
 
         myNixvimTerminal = makeNixvim {
-          extraPackages = [ pkgs.clang ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
+          extraPackages = [
+            pkgs.clang
+            pkgs.pyright # Python language server
+            pkgs.python3 # Python interpreter
+          ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
             pkgs.xclip # X11 clipboard
           ];
 
@@ -95,7 +103,7 @@
             ./modules/vimwiki.nix
             ./modules/colorising.nix
             ./modules/highlight.nix
-            ./modules/terminal-profile.nix  # Terminal-optimized settings
+            ./modules/terminal-profile.nix # Terminal-optimized settings
           ];
         };
 
