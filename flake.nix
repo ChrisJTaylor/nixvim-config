@@ -28,6 +28,35 @@
             pkgs.clang
             pkgs.pyright # Python language server
             pkgs.python3 # Python interpreter
+
+            # .NET/C# development
+            pkgs.dotnet-sdk_8 # .NET 8 SDK for C# development
+            pkgs.omnisharp-roslyn # C# LSP server
+
+            # Go development  
+            pkgs.go # Go compiler and tools
+            pkgs.gopls # Go LSP server
+
+            # Zig development
+            pkgs.zig # Zig compiler
+            pkgs.zls # Zig LSP server
+
+            # Ruby development
+            pkgs.ruby # Ruby interpreter
+            pkgs.rubyPackages.solargraph # Ruby LSP server
+
+            # JavaScript/TypeScript development
+            pkgs.nodejs_20 # Node.js runtime
+            pkgs.nodePackages.typescript # TypeScript compiler
+            pkgs.nodePackages.typescript-language-server # TS LSP server
+
+            # Java development
+            pkgs.jdk21 # Java Development Kit
+            pkgs.jdt-language-server # Java LSP server
+
+            # Kotlin development
+            pkgs.kotlin # Kotlin compiler
+            pkgs.kotlin-language-server # Kotlin LSP server
           ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
             pkgs.xclip # X11 clipboard
           ];
@@ -70,6 +99,35 @@
             pkgs.clang
             pkgs.pyright # Python language server
             pkgs.python3 # Python interpreter
+
+            # .NET/C# development
+            pkgs.dotnet-sdk_8 # .NET 8 SDK for C# development
+            pkgs.omnisharp-roslyn # C# LSP server
+
+            # Go development  
+            pkgs.go # Go compiler and tools
+            pkgs.gopls # Go LSP server
+
+            # Zig development
+            pkgs.zig # Zig compiler
+            pkgs.zls # Zig LSP server
+
+            # Ruby development
+            pkgs.ruby # Ruby interpreter
+            pkgs.rubyPackages.solargraph # Ruby LSP server
+
+            # JavaScript/TypeScript development
+            pkgs.nodejs_20 # Node.js runtime
+            pkgs.nodePackages.typescript # TypeScript compiler
+            pkgs.nodePackages.typescript-language-server # TS LSP server
+
+            # Java development
+            pkgs.jdk21 # Java Development Kit
+            pkgs.jdt-language-server # Java LSP server
+
+            # Kotlin development
+            pkgs.kotlin # Kotlin compiler
+            pkgs.kotlin-language-server # Kotlin LSP server
           ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
             pkgs.xclip # X11 clipboard
           ];
