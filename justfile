@@ -3,12 +3,20 @@ _default:
   @just --list
 
 # build the flake configuration
-build:
+build-gui:
   nix build .
 
+# build the flake configuration
+build-term:
+  nix build .#terminal
+
 # run this configuration of nixvim
-run:
+run-gui:
   nix run .
+
+# run this configuration of nixvim
+run-term:
+  nix run .#terminal
 
 # update the flakes
 update:
