@@ -1,7 +1,8 @@
-{ ... }: {
+{...}: {
   plugins.render-markdown = {
     enable = true;
     settings = {
+      enabled = true;
       bullet = {
         icons = [
           "◆ "
