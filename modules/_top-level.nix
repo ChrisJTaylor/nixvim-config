@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   colorschemes = {
     tokyonight = {
       enable = false;
@@ -113,12 +113,14 @@
     };
   };
 
+  plugins.numbertoggle.enable = true;
   plugins.precognition.enable = false;
   plugins.which-key.enable = true;
   editorconfig.enable = true;
   plugins.nix.enable = true;
   plugins.nix-develop.enable = true;
   plugins.rainbow-delimiters.enable = true;
+  plugins.twilight.enable = true;
 
   plugins.undotree = {
     enable = true;
@@ -145,7 +147,7 @@
     };
   };
 
-  # Enhanced Alpha dashboard with animated neon title  
+  # Enhanced Alpha dashboard with animated neon title
   plugins.alpha = {
     enable = true;
     settings = {
