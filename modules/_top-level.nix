@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   colorschemes = {
     tokyonight = {
       enable = false;
@@ -18,7 +18,7 @@
           # Deep space backgrounds
           bg = "#0a0a0a";
           bg_alt = "#111111";
-          bg_highlight = "#1a1a1a";
+          bg_highlight = "#4e4e4e";
 
           # Enhanced neon colors for space-age vibes
           cyan = "#5ef1ff";
@@ -36,7 +36,7 @@
         highlights = {
           # Your specific requirement: purple comments with bright green background
           Comment = {
-            fg = "#6f1daa"; # Purple text
+            fg = "#bd5eff"; # Purple text
             bg = "#5eff6c"; # Green background
           };
 
