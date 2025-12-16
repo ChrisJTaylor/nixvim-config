@@ -65,15 +65,15 @@
     };
   };
 
-  clipboard.providers = {
-    xclip.enable = pkgs.stdenv.isLinux;
-  };
+  # Clipboard configuration moved to profile-specific modules:
+  # - GUI profile: ./clipboard-gui.nix (xclip/wl-clipboard)
+  # - Terminal profile: ./clipboard-ssh.nix (OSC 52)
 
   opts = {
     number = true;
     relativenumber = true;
     shiftwidth = 2;
-    clipboard = "unnamedplus";
+    # Clipboard setting moved to profile-specific modules
     undofile = true;
     ignorecase = true;
     smartcase = true;

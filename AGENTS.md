@@ -8,7 +8,7 @@
 - **Update**: `just update` or `nix flake update` (update flake dependencies)
 - **Dev Shell**: `nix develop` (includes stylua, nixpkgs-fmt, just, ripgrep, fd, tree-sitter)
 - **Single Test**: `:lua require("neotest").run.run()` (current), `:lua require("neotest").run.run(vim.fn.expand("%"))` (file)
-- **Test Summary**: `:lua require("neotest").summary.toggle()` (test results overview)
+- **Clipboard Test**: `./launch-nixvim.sh test-clipboard` (test SSH clipboard via OSC 52)
 
 ## Code Style & Structure
 - **Language**: Nix expressions using nixvim syntax (NOT raw Lua/Vim scripts)
@@ -24,10 +24,16 @@
 ## Platform & Testing
 - **Linux**: Full support including Jupyter/Magma integration and X11 clipboard (xclip)
 - **macOS**: Full support except Magma (disabled due to ueberzug dependency issues)
-- **Windows**: Supported via WSL2 environment
+- **SSH Clipboard**: OSC 52 support for clipboard over SSH (Ghostty, Windows Terminal, iTerm2)
 - **Auto-Testing**: Files tested on save with neotest, visual coverage feedback via coverage.nix
 - **Test Frameworks**: dotnet, go, java, rust, python, jest, vitest, zig, rspec, plenary via neotest
-- **Pre-Commit**: Always run `just check` before commits to validate formatting and build success
+## Clipboard Configuration
+- **GUI Profile**: Uses xclip/wl-clipboard for local X11/Wayland environments
+- **Terminal Profile**: Uses OSC 52 escape sequences for SSH clipboard forwarding
+- **Automatic Setup**: tmux configuration is automatically applied when nixvim detects tmux
+- **tmux Integration**: Includes tmux-navigator plugin for seamless pane navigation
+- **Testing**: Use `<leader>ct` (clipboard test), `<leader>cs` (clipboard status), `<leader>tm` (configure tmux)
+- **Supported Terminals**: Ghostty (recommended), Windows Terminal, iTerm2, Kitty, Alacritty
 
 ## Commit Standards
 - **Format**: Conventional commits enforced via cocogitto (cog.toml configuration)

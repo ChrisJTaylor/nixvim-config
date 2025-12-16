@@ -1,6 +1,11 @@
 # Terminal-optimized profile configuration
 # This module contains settings optimized for terminal-only environments
 { ... }: {
+  imports = [
+    ./clipboard-ssh.nix
+    ./tmux-integration.nix
+  ];
+
   colorschemes.cyberdream.settings = {
     # Disable transparency for better terminal compatibility
     transparent = false;
