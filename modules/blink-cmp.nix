@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   plugins.blink-copilot.enable = true;
   plugins.blink-ripgrep.enable = false;
   plugins.blink-cmp-git.enable = true;
@@ -96,6 +96,13 @@
         ];
         min_keyword_length = 1;
         providers = {
+          lsp = {
+            async = true;
+            name = "LSP";
+            fallbacks = [ "buffer" ];
+            score_offset = 1000;
+            min_keyword_length = 0;
+          };
           ripgrep = {
             async = true;
             module = "blink-ripgrep";
@@ -107,7 +114,7 @@
               max_filesize = "1M";
               project_root_marker = ".git";
               search_casing = "--ignore-case";
-              additional_rg_options = [];
+              additional_rg_options = [ ];
               fallback_to_regex_highlighting = true;
             };
           };
@@ -132,8 +139,8 @@
             name = "git";
             score_offset = 75;
             opts = {
-              commit = {};
-              git_centers = {git_hub = {};};
+              commit = { };
+              git_centers = { git_hub = { }; };
             };
           };
           dictionary = {
@@ -142,7 +149,7 @@
             score_offset = 100;
             min_keyword_length = 3;
             # Optional configurations
-            opts = {};
+            opts = { };
           };
         };
       };

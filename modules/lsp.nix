@@ -79,10 +79,42 @@
       gopls = {
         enable = true;
         autostart = true;
+        settings = {
+          staticcheck = true;
+          completeUnimported = true;
+          usePlaceholders = true;
+          analyses = {
+            unusedparams = true;
+          };
+        };
       };
       ts_ls = {
         enable = true;
         autostart = true;
+        settings = {
+          typescript = {
+            inlayHints = {
+              includeInlayParameterNameHints = "all";
+              includeInlayParameterNameHintsWhenArgumentMatchesName = false;
+              includeInlayFunctionParameterTypeHints = true;
+              includeInlayVariableTypeHints = true;
+              includeInlayPropertyDeclarationTypeHints = true;
+              includeInlayFunctionLikeReturnTypeHints = true;
+              includeInlayEnumMemberValueHints = true;
+            };
+          };
+          javascript = {
+            inlayHints = {
+              includeInlayParameterNameHints = "all";
+              includeInlayParameterNameHintsWhenArgumentMatchesName = false;
+              includeInlayFunctionParameterTypeHints = true;
+              includeInlayVariableTypeHints = true;
+              includeInlayPropertyDeclarationTypeHints = true;
+              includeInlayFunctionLikeReturnTypeHints = true;
+              includeInlayEnumMemberValueHints = true;
+            };
+          };
+        };
       };
       html = {
         enable = true;
@@ -145,6 +177,18 @@
         autostart = true;
         installCargo = true;
         installRustc = true;
+        settings = {
+          checkOnSave = true;
+          check = {
+            command = "clippy";
+          };
+          procMacro = {
+            enable = true;
+          };
+          cargo = {
+            features = "all";
+          };
+        };
       };
       terraformls = {
         enable = true;
