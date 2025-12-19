@@ -75,7 +75,7 @@
   # SSH-optimized clipboard keybindings
   keymaps = [
     {
-      mode = ["n" "v"];
+      mode = [ "n" "v" ];
       key = "<leader>y";
       action = "\"+y";
       options = {
@@ -84,7 +84,7 @@
       };
     }
     {
-      mode = ["n" "v"];
+      mode = [ "n" "v" ];
       key = "<leader>p";
       action = "\"+p";
       options = {
@@ -93,7 +93,7 @@
       };
     }
     {
-      mode = ["n"];
+      mode = [ "n" ];
       key = "<leader>ct";
       action = ":ClipboardTest<CR>";
       options = {
@@ -102,7 +102,7 @@
       };
     }
     {
-      mode = ["n"];
+      mode = [ "n" ];
       key = "<leader>cs";
       action = ":ClipboardStatus<CR>";
       options = {

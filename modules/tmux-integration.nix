@@ -1,7 +1,7 @@
 # tmux integration module for nixvim
 # Automatically configures tmux for optimal clipboard and navigation when detected
 { pkgs, ... }: {
-  
+
   # Install tmux if not available (optional, can be commented out)
   extraPackages = with pkgs; [
     tmux
@@ -77,7 +77,7 @@
 
   keymaps = [
     {
-      mode = ["n"];
+      mode = [ "n" ];
       key = "<leader>tm";
       action = ":TmuxConfigure<CR>";
       options = {

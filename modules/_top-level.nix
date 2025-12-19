@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   colorschemes = {
     tokyonight = {
       enable = false;

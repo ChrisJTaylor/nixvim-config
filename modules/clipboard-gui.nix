@@ -12,7 +12,7 @@
   # GUI-specific clipboard keybindings
   keymaps = [
     {
-      mode = ["n" "v"];
+      mode = [ "n" "v" ];
       key = "<leader>y";
       action = "\"+y";
       options = {
@@ -21,7 +21,7 @@
       };
     }
     {
-      mode = ["n" "v"];
+      mode = [ "n" "v" ];
       key = "<leader>p";
       action = "\"+p";
       options = {
