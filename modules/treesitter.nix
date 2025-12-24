@@ -29,7 +29,7 @@
       ruby
     ];
 
-    folding = false;
+    folding.enable = false;
     nixvimInjections = true;
     nixGrammars = true;
     settings = {
