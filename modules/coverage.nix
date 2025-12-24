@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   plugins.coverage = {
     enable = true;
     settings = {
