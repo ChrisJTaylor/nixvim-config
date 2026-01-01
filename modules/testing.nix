@@ -47,7 +47,7 @@
       log_level = 1;
       output = {
         enabled = true;
-        open_on_run = true;
+        open_on_run = false;
       };
       output_panel = {
         enabled = false;
