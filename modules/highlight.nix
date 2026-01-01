@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   autoGroups = {
     custom_highlights = {
       clear = true;
@@ -7,8 +7,8 @@
 
   autoCmd = [
     {
-      event = [ "ColorScheme" "VimEnter" ];
-      pattern = [ "*" ];
+      event = ["ColorScheme" "VimEnter"];
+      pattern = ["*"];
       group = "custom_highlights";
       callback = {
         __raw = ''
@@ -27,8 +27,8 @@
                 -- =========================================================================
 
                 -- 1. REGULAR COMMENTS (VOMIT TIER)
-                Comment = { fg = "#bd5eff", bg = "#5eff6c", bold = true },
-                ["@comment"] = { fg = "#bd5eff", bg = "#5eff6c", bold = true },
+                Comment = { fg = "#bd5eff", bg = "#4b424c", bold = true },
+                ["@comment"] = { fg = "#bd5eff", bg = "#4b424c", bold = true },
 
                 -- 2. WARNING COMMENTS (ALERT TIER)
                 ["@comment.warning"] = { fg = "#bd5eff", bg = "#4d4c43", bold = true },
@@ -52,7 +52,7 @@
                 LspDiagnosticsUnderlineHint = { undercurl = true, sp = "#89b4fa" },
 
                 -- Space-age enhancements (UI Chrome overrides removed to respect Everforest theme)
-                
+
                 -- Enhanced cursor and selection (Kept as requested)
                 Cursor = { fg = "#0a0a0a", bg = "#5ef1ff" },
                 CursorIM = { fg = "#0a0a0a", bg = "#ff5ef1" },
