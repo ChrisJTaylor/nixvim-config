@@ -64,37 +64,6 @@
                 LineNr = { fg = "#5ea1ff" },
                 CursorLineNr = { fg = "#5ef1ff", bold = true },
 
-                -- Enhanced fold column
-                FoldColumn = { fg = "#bd5eff" },
-                Folded = { fg = "#bd5eff", bg = "#1a1a1a", italic = true },
-
-                -- Enhanced status line
-                StatusLine = { fg = "#5ef1ff", bg = "#111111", bold = true },
-                StatusLineNC = { fg = "#7b8496", bg = "#0a0a0a" },
-
-                -- Enhanced tab line for space-age feel
-                TabLine = { fg = "#7b8496", bg = "#111111" },
-                TabLineFill = { bg = "#0a0a0a" },
-                TabLineSel = { fg = "#5ef1ff", bg = "#1a1a1a", bold = true },
-
-                -- Enhanced diff highlighting
-                DiffAdd = { fg = "#5eff6c", bg = "#0a2b0a" },
-                DiffChange = { fg = "#f1ff5e", bg = "#2b2b0a" },
-                DiffDelete = { fg = "#ff6e5e", bg = "#2b0a0a" },
-                DiffText = { fg = "#5ef1ff", bg = "#0a1a2b", bold = true },
-
-                -- Enhanced popup and floating window styling
-                Pmenu = { fg = "#ffffff", bg = "#111111" },
-                PmenuSel = { fg = "#0a0a0a", bg = "#5ef1ff", bold = true },
-                PmenuSbar = { bg = "#1a1a1a" },
-                PmenuThumb = { bg = "#5ea1ff" },
-
-                -- Enhanced borders for floating windows
-                FloatBorder = { fg = "#5ef1ff", bg = "NONE" },
-
-                -- Enhanced wildmenu
-                WildMenu = { fg = "#0a0a0a", bg = "#ff5ef1", bold = true },
-
                 -- Enhanced error and warning highlights
                 ErrorMsg = { fg = "#ff6e5e", bg = "NONE", bold = true },
                 WarningMsg = { fg = "#f1ff5e", bg = "NONE", bold = true },
