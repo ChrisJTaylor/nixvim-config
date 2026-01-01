@@ -6,9 +6,9 @@
     ./tmux-integration.nix
   ];
 
-  colorschemes.cyberdream.settings = {
+  colorschemes.everforest.settings = {
     # Disable transparency for better terminal compatibility
-    transparent = false;
+    transparent_background = 0;
   };
 
   # No transparency effects in terminal mode for better readability

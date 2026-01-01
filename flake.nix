@@ -65,6 +65,7 @@
 
           imports = [
             ./modules/_top-level.nix
+            ./modules/colour-scheme.nix
             ./modules/keymaps.nix
             ./modules/autocmds.nix
             ./modules/autosave.nix
@@ -139,6 +140,7 @@
 
           imports = [
             ./modules/_top-level.nix
+            ./modules/colour-scheme.nix
             ./modules/keymaps.nix
             ./modules/autocmds.nix
             ./modules/autosave.nix

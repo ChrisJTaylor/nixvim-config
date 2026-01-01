@@ -5,9 +5,9 @@
     ./clipboard-gui.nix
   ];
 
-  colorschemes.cyberdream.settings = {
+  colorschemes.everforest.settings = {
     # Enhanced transparency for GUI environments
-    transparent = true;
+    transparent_background = 1;
   };
 
   opts = {
