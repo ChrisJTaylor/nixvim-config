@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   autoGroups = {
     custom_highlights = {
       clear = true;
@@ -7,8 +7,8 @@
 
   autoCmd = [
     {
-      event = ["ColorScheme" "VimEnter"];
-      pattern = ["*"];
+      event = [ "ColorScheme" "VimEnter" ];
+      pattern = [ "*" ];
       group = "custom_highlights";
       callback = {
         __raw = ''
