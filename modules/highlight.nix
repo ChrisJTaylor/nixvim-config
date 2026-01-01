@@ -51,20 +51,21 @@
                 LspDiagnosticsDefaultHint = { fg = "#89b4fa" },
                 LspDiagnosticsUnderlineHint = { undercurl = true, sp = "#89b4fa" },
 
-                -- Space-age enhancements
-                -- Enhanced cursor and selection
+                -- Space-age enhancements (UI Chrome overrides removed to respect Everforest theme)
+                
+                -- Enhanced cursor and selection (Kept as requested)
                 Cursor = { fg = "#0a0a0a", bg = "#5ef1ff" },
                 CursorIM = { fg = "#0a0a0a", bg = "#ff5ef1" },
 
-                -- Enhanced search highlighting
+                -- Enhanced search highlighting (Kept as requested)
                 Search = { fg = "#0a0a0a", bg = "#f1ff5e", bold = true },
                 IncSearch = { fg = "#0a0a0a", bg = "#ff5ef1", bold = true },
 
-                -- Enhanced line numbers with neon glow effect
+                -- Enhanced line numbers with neon glow effect (Kept)
                 LineNr = { fg = "#5ea1ff" },
                 CursorLineNr = { fg = "#5ef1ff", bold = true },
 
-                -- Enhanced error and warning highlights
+                -- Enhanced error and warning highlights (Text only)
                 ErrorMsg = { fg = "#ff6e5e", bg = "NONE", bold = true },
                 WarningMsg = { fg = "#f1ff5e", bg = "NONE", bold = true },
                 MoreMsg = { fg = "#5eff6c", bold = true },
