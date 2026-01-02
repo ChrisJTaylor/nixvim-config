@@ -1,4 +1,13 @@
-{ ... }: {
+{pkgs, ...}: {
+  plugins = {
+    telescope.enable = true;
+  };
+
+  extraPlugins = with pkgs.vimPlugins; [
+    plenary-nvim
+    telekasten-nvim
+  ];
+
   extraConfigLua = ''
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -18,10 +27,10 @@
     vim.api.nvim_create_autocmd("VimEnter", {
       callback = function()
         local cwd = vim.fn.getcwd()
-        
+
         -- Set workspace folder for Copilot
         vim.g.copilot_workspace_folders = { cwd }
-        
+
         -- Add to LSP workspace folders if any LSP clients are active
         vim.defer_fn(function()
           local clients = vim.lsp.get_clients()
@@ -85,22 +94,22 @@
     -- Animated Neon Title for MACHINOLOGY NEOVIM
     local neon_colors = {
       "Function",    -- Cyan
-      "String",      -- Green  
+      "String",      -- Green
       "Keyword",     -- Purple/Magenta
       "Number",      -- Orange
       "Type",        -- Blue
       "Special",     -- Pink/Red
     }
-    
+
     local current_color = 1
     local animation_timer = nil
-    
+
     -- Function to update alpha title color
     local function update_title_color()
       if vim.g.alpha_displayed then
         local alpha = require('alpha')
         local config = alpha.default_config
-        
+
         -- Find the title section and update its highlight
         for _, section in ipairs(config.layout) do
           if section.type == "text" and section.val and #section.val > 5 then
@@ -109,7 +118,7 @@
             break
           end
         end
-        
+
         -- Only redraw if alpha buffer is visible
         local buffers = vim.api.nvim_list_bufs()
         for _, buf in ipairs(buffers) do
@@ -123,12 +132,12 @@
             break
           end
         end
-        
+
         -- Cycle to next color
         current_color = (current_color % #neon_colors) + 1
       end
     end
-    
+
     -- Start animation when Alpha opens
     vim.api.nvim_create_autocmd("User", {
       pattern = "AlphaReady",
@@ -141,7 +150,7 @@
         animation_timer:start(0, 800, vim.schedule_wrap(update_title_color)) -- Change color every 800ms
       end,
     })
-    
+
     -- Stop animation when leaving Alpha
     vim.api.nvim_create_autocmd("User", {
       pattern = "AlphaClosed",
@@ -153,7 +162,7 @@
         end
       end,
     })
-    
+
     -- Also stop animation when buffer changes away from Alpha
     vim.api.nvim_create_autocmd({"BufLeave", "BufDelete"}, {
       callback = function()
@@ -166,6 +175,17 @@
           end
         end
       end,
+    })
+
+    require('telekasten').setup({
+      home = vim.fn.expand("~/notes"),
+      -- dailies = vim.fn.expand("~/notes/daily"),
+      -- weeklies = vim.fn.expand("~/notes/weekly"),
+      -- templates = vim.fn.expand("~/notes/templates"),
+
+      -- Optional: customize behavior
+      -- extension = ".md",
+      -- template_new_note = vim.fn.expand("~/notes/templates/new_note.md"),
     })
   '';
 }

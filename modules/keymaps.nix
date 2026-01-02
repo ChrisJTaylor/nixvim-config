@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   globals = {
     mapleader = " ";
     maplocalleader = "<Tab>";
@@ -524,6 +524,32 @@
       options.silent = true;
       action = "<cmd>:UndotreeToggle<CR>";
       options.desc = "Show undo tree";
+    }
+
+    # telekasten
+    {
+      mode = "n";
+      key = "<leader>zf";
+      action = "<cmd>Telekasten find_notes<cr>";
+      options.desc = "Find notes";
+    }
+    {
+      mode = "n";
+      key = "<leader>zg";
+      action = "<cmd>Telekasten search_notes<cr>";
+      options.desc = "Search notes";
+    }
+    {
+      mode = "n";
+      key = "<leader>zn";
+      action = "<cmd>Telekasten new_note<cr>";
+      options.desc = "New note";
+    }
+    {
+      mode = "n";
+      key = "<leader>zt";
+      action = "<cmd>Telekasten goto_today<cr>";
+      options.desc = "Today's note";
     }
   ];
 }
