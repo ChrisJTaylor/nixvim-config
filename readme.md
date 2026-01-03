@@ -2,6 +2,14 @@
 
 Neovim configuration with NCrunch-style continuous testing, GitHub Copilot integration, and comprehensive language support.
 
+## ⚡ Key Highlights
+
+- **🧪 NCrunch-style testing**: Auto-test-on-save with real-time coverage visualization (🟢 covered, 🟠 partial, 🔴 uncovered)
+- **🤖 GitHub Copilot**: GPT-4o with resource-based context system (`#glob:**/*.py`, `@copilot` for tool access)
+- **📋 SSH Clipboard Support**: Robust OSC 52 integration for seamless copy/paste over SSH (works with Ghostty, Windows Terminal, iTerm2)
+- **🌐 Multi-language**: C#/.NET, Go, Python, Ruby, Rust, Java, JavaScript/TypeScript, Zig
+- **⚙️ Smart formatting**: EditorConfig-aware with Prettier, OmniSharp, alejandra, shfmt
+
 ## 🚀 Quick Start
 
 ```bash
@@ -11,39 +19,6 @@ nix run github:ChrisJTaylor/nixvim-config
 # Install to profile
 nix profile install .
 ```
-
-## ⚡ Key Highlights
-
-- **🧪 NCrunch-style testing**: Auto-test-on-save with real-time coverage visualization (🟢 covered, 🟠 partial, 🔴 uncovered)
-- **🤖 GitHub Copilot**: GPT-4o with resource-based context system (`#glob:**/*.py`, `@copilot` for tool access)
-- **🌐 Multi-language**: C#/.NET, Go, Python, Ruby, Rust, Java, JavaScript/TypeScript, Zig
-- **⚙️ Smart formatting**: EditorConfig-aware with Prettier, OmniSharp, alejandra, shfmt
-
-## 🎯 Essential Keybindings
-
-| Key | Action | Description |
-|-----|--------|-------------|
-| `<leader>ts` | Test panel | Show interactive test panel |
-| `<leader>tw` | Auto-test | Toggle test-on-save |
-| `<leader>ll` | Coverage | Load and show coverage |
-| `<leader>cc` | Copilot chat | Open AI assistant |
-| `<leader>ef` | File tree | Open file explorer |
-| `<leader>gg` | LazyGit | Git interface |
-| `K` | Docs | Show documentation |
-| `<leader>a` | Actions | Code actions menu |
-| `t` | Terminal | Toggle floating terminal |
-| `<leader>f` | Find refs | Find references |
-
-**Leader key**: `<Space>` | **Local leader**: `<Tab>`
-
-## 📋 Prerequisites & Platform Support
-
-**Requirements**: Nix with flakes enabled, Git, basic terminal knowledge
-
-**Platform Support**:
-- ✅ **Linux**: Full support including Jupyter/Magma integration
-- ✅ **macOS**: Full support (Magma disabled due to ueberzug dependency)  
-- ✅ **Windows**: Via WSL2
 
 ## 🛠️ Installation Options
 
@@ -61,7 +36,7 @@ home.packages = [ inputs.nixvim-config.packages.${system}.default ];
 
 ---
 
-## 📖 Detailed Reference
+## 📖 Feature Deep Dive
 
 ### 🧪 Testing & Coverage Features
 
@@ -93,6 +68,13 @@ home.packages = [ inputs.nixvim-config.packages.${system}.default ];
 - **Multi-language examples**: Works with Python, Rust, Go, JavaScript, C#, Java, etc.
 - **Project-specific context** via `.copilot-instructions.md`
 
+### 📋 Clipboard & Remote Development
+
+**Seamless Remote Experience**:
+- **SSH Support**: Uses OSC 52 escape sequences to communicate directly with your local terminal clipboard.
+- **Platform Agnostic**: Works whether you are on Linux, macOS, or Windows (via WSL2).
+- **Tmux Integration**: Automatic configuration when running inside tmux.
+
 ### 🧰 Language Support & Formatting
 
 **EditorConfig-aware formatting**:
@@ -109,9 +91,43 @@ home.packages = [ inputs.nixvim-config.packages.${system}.default ];
 - Neo-tree file explorer with git integration
 - Telescope fuzzy finder with frecency algorithm
 
-### 📄 Complete Keybinding Reference
+---
 
-#### **Testing & Coverage**
+## ⌨️ Keybinding Reference
+
+### **AI Assistant (Copilot)**
+
+| Key | Action | Description |
+|-----|--------|-------------|
+| `<leader>cc` | `:CopilotChat` | **Open Copilot chat** |
+| `<leader>ca` | `:CopilotChatOpen` | Open chat with project context |
+| `<leader>cR` | `:CopilotChatRefresh` | **Refresh repository context** |
+| `<leader>cT` | `Toggle auto-trigger` | **Toggle auto-trigger** |
+| `<leader>cs` | `:CopilotChatSave` | Save chat history |
+| `<leader>ct` | `:CopilotChatTests` | Generate tests |
+| `<leader>cr` | `:CopilotChatReview` | Review code |
+| `<leader>ci` | `:CopilotChatContext` | Show resource syntax help |
+| `<leader>cp` | `:CopilotChatProjectOverview` | Project overview with context |
+| `<leader>cA` | `:CopilotChatCodeAnalysis` | Analyze codebase for improvements |
+| `<leader>cH` | `:CopilotChatProjectHelp` | Project structure help |
+| `<leader>ce` | `:CopilotChatExplain` | Explain selected code |
+| `<leader>cf` | `:CopilotChatFix` | Fix selected code |
+| `<leader>cd` | `:CopilotChatDocs` | Generate documentation |
+| `<leader>co` | `:CopilotChatOptimize` | Optimize code |
+| `<leader>cm` | `:CopilotChatCommit` | Generate commit message |
+| `<C-Space>` | Manual suggestion trigger | Trigger suggestion in insert mode |
+
+### **Clipboard (SSH & Local)**
+
+| Key | Action | Description |
+|-----|--------|-------------|
+| `<leader>y` | `OSC52 Copy` | **Copy to system clipboard** (SSH supported) |
+| `<leader>p` | `OSC52 Paste` | **Paste from system clipboard** (SSH supported) |
+| `<leader>yt` | `Test Clipboard` | Test clipboard configuration |
+| `<leader>ys` | `Clipboard Status` | Show clipboard provider status |
+
+### **Testing & Coverage**
+
 | Key | Action | Description |
 |-----|--------|-------------|
 | `<leader>ts` | `:Neotest summary` | Show test panel |
@@ -122,10 +138,6 @@ home.packages = [ inputs.nixvim-config.packages.${system}.default ];
 | `<leader>tw` | `toggle watch` | **Auto-run tests on save** |
 | `<leader>td` | `debug test` | Debug nearest test |
 | `<leader>to` | `:Neotest output` | Show test output |
-
-#### **Coverage Visualization**
-| Key | Action | Description |
-|-----|--------|-------------|
 | `<leader>ll` | `:CoverageLoad` | **Load coverage data** |
 | `<leader>ls` | `:CoverageShow` | Show coverage highlights |
 | `<leader>lm` | `:CoverageSummary` | Display coverage summary |
@@ -133,40 +145,8 @@ home.packages = [ inputs.nixvim-config.packages.${system}.default ];
 | `<leader>mc` | Coverage toggle | Quick coverage toggle |
 | `<leader>mx` | Coverage summary | Quick coverage summary |
 
-#### **AI Assistant (Copilot)**
-| Key | Action | Description |
-|-----|--------|-------------|
-| `<leader>cc` | `:CopilotChat` | **Open Copilot chat** |
-| `<leader>ca` | `:CopilotChatOpen` | Open chat with project context |
-| `<leader>ci` | `:CopilotChatContext` | Show resource syntax help |
-| `<leader>cp` | `:CopilotChatProjectOverview` | Project overview with context |
-| `<leader>cA` | `:CopilotChatCodeAnalysis` | Analyze codebase for improvements |
-| `<leader>cH` | `:CopilotChatProjectHelp` | Project structure help |
-| `<leader>ce` | `:CopilotChatExplain` | Explain selected code |
-| `<leader>cf` | `:CopilotChatFix` | Fix selected code |
-| `<leader>cd` | `:CopilotChatDocs` | Generate documentation |
-| `<leader>cr` | `:CopilotChatReview` | Review code |
-| `<leader>co` | `:CopilotChatOptimize` | Optimize code |
-| `<leader>ct` | `:CopilotChatTests` | Generate tests |
-| `<leader>cm` | `:CopilotChatCommit` | Generate commit message |
-| `<leader>cs` | `:CopilotChatSave` | Save chat history |
-| `<C-Space>` | Manual suggestion trigger | Trigger suggestion in insert mode |
+### **File Explorer & Navigation**
 
-**Chat Panel Controls**:
-| Key | Mode | Action | Description |
-|-----|------|--------|-------------|
-| `<ESC>` | Insert | Close chat panel | Dismisses the entire chat panel |
-| `<C-c>` | Insert | Exit insert mode | Leave insert mode (stay in panel) |
-| `<Enter>` | Normal | Submit prompt | Send your message to Copilot |
-| `<C-s>` | Insert | Submit prompt | Send your message to Copilot |
-| `<C-l>` | Both | Reset chat | Clear current conversation |
-| `<C-y>` | Both | Accept diff | Apply suggested code changes |
-| `q` | Normal | Close chat panel | Dismisses the entire chat panel |
-| `gd` | Normal | Show diff | View suggested changes |
-| `gi` | Normal | Show info | Display chat information |
-| `gc` | Normal | Show context | View current context files |
-
-#### **File Explorer & Navigation**
 | Key | Action | Description |
 |-----|--------|-------------|
 | `<leader>ef` | `:Neotree filesystem reveal` | **Open file explorer** |
@@ -175,7 +155,8 @@ home.packages = [ inputs.nixvim-config.packages.${system}.default ];
 | `<leader>eb` | `:Neotree buffers reveal` | Show open buffers |
 | `<leader>eg` | `:Neotree git_status reveal` | Show git changes |
 
-#### **LSP & Code Navigation**
+### **LSP & Code Navigation**
+
 | Key | Action | Description |
 |-----|--------|-------------|
 | `K` | `:Lspsaga hover_doc` | **Show documentation** |
@@ -185,12 +166,14 @@ home.packages = [ inputs.nixvim-config.packages.${system}.default ];
 | `<leader>f` | `:Lspsaga finder ref` | **Find references** |
 | `<leader>F` | `:Lspsaga finder def+ref+imp` | Find definitions/references/implementations |
 
-#### **Git Integration**
+### **Git Integration**
+
 | Key | Action | Description |
 |-----|--------|-------------|
 | `<leader>gg` | `:LazyGit` | **Open LazyGit** |
 
-#### **Window Management**
+### **Window Management**
+
 | Key | Action | Description |
 |-----|--------|-------------|
 | `<leader>\|` | `<C-w><C-v>` | Split vertically |
@@ -198,7 +181,8 @@ home.packages = [ inputs.nixvim-config.packages.${system}.default ];
 | `<leader>w` | `<C-w><C-w>` | Switch windows |
 | `<C-h/j/k/l>` | Move focus | Navigate between windows |
 
-#### **Utilities**
+### **Utilities**
+
 | Key | Action | Description |
 |-----|--------|-------------|
 | `<leader>q` | `:q!` | Quit without saving |
