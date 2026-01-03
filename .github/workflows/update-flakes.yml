@@ -1,0 +1,27 @@
+name: Update flakes
+
+on:
+  workflow_dispatch:
+    inputs:
+      flakes-to-update:
+        description: "Specific flake inputs to be updated (space-separated. Leave empty to update all flakes."
+        required: false
+        type: string
+  schedule:
+    - cron: "0 19 * * 6,1,3" # 3 times a week at 7pm
+
+jobs:
+  lockfile:
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: [self-hosted, nix]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/update-flake-lock@main
+        with:
+          pr-title: "Update flake inputs"
+          pr-labels: |
+            dependencies
+            automated
+          inputs: ${{ github.event.inputs.flakes-to-update }}
