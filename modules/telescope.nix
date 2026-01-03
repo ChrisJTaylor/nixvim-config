@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   plugins.telescope = {
     enable = true;
     keymaps = {
@@ -11,7 +11,7 @@
       "<leader>fg" = "live_grep";
       "<leader>ff" = {
         action = "find_files";
-        options = { desc = "Telescope Find Files (hidden)"; };
+        options = {desc = "Telescope Find Files (hidden)";};
       };
     };
     settings = {
@@ -46,7 +46,7 @@
           show_untracked = true;
         };
         live_grep = {
-          additional_args = [ "--hidden" "--glob" "!.git/*" ];
+          additional_args = ["--hidden" "--glob" "!.git/*"];
         };
       };
     };

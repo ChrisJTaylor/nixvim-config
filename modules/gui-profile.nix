@@ -1,6 +1,6 @@
 # GUI-optimized profile configuration
 # This module contains settings optimized for GUI environments with transparency effects
-{ ... }: {
+{...}: {
   imports = [
     ./clipboard-gui.nix
   ];

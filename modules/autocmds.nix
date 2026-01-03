@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   autoGroups = {
     highlight_yank.clear = true;
     auto_test.clear = true;
@@ -7,14 +7,14 @@
 
   autoCmd = [
     {
-      event = [ "TextYankPost" ];
+      event = ["TextYankPost"];
       group = "highlight_yank";
       command = "silent! lua vim.highlight.on_yank{higroup='Search', timeout=200}";
     }
 
     {
-      event = [ "BufWritePost" ];
-      pattern = [ "go.mod" ];
+      event = ["BufWritePost"];
+      pattern = ["go.mod"];
       callback = {
         __raw = "function()
               vim.cmd('!go mod tidy')
@@ -24,8 +24,8 @@
     }
     # Combined Go LSP and auto-test on save
     {
-      event = [ "BufWritePost" ];
-      pattern = [ "*.go" ];
+      event = ["BufWritePost"];
+      pattern = ["*.go"];
       group = "auto_test";
       callback = {
         __raw = "function()
@@ -46,8 +46,8 @@
 
     # Auto-test on save for other supported languages
     {
-      event = [ "BufWritePost" ];
-      pattern = [ "*.cs" "*.csproj" "*.sln" ];
+      event = ["BufWritePost"];
+      pattern = ["*.cs" "*.csproj" "*.sln"];
       group = "auto_test";
       callback = {
         __raw = "function()
@@ -62,8 +62,8 @@
       };
     }
     {
-      event = [ "BufWritePost" ];
-      pattern = [ "*.py" ];
+      event = ["BufWritePost"];
+      pattern = ["*.py"];
       group = "auto_test";
       callback = {
         __raw = "function()
@@ -78,8 +78,8 @@
       };
     }
     {
-      event = [ "BufWritePost" ];
-      pattern = [ "*.rb" ];
+      event = ["BufWritePost"];
+      pattern = ["*.rb"];
       group = "auto_test";
       callback = {
         __raw = "function()
@@ -94,8 +94,8 @@
       };
     }
     {
-      event = [ "BufWritePost" ];
-      pattern = [ "*.rs" ];
+      event = ["BufWritePost"];
+      pattern = ["*.rs"];
       group = "auto_test";
       callback = {
         __raw = "function()
@@ -110,8 +110,8 @@
       };
     }
     {
-      event = [ "BufWritePost" ];
-      pattern = [ "*.java" ];
+      event = ["BufWritePost"];
+      pattern = ["*.java"];
       group = "auto_test";
       callback = {
         __raw = "function()
@@ -126,8 +126,8 @@
       };
     }
     {
-      event = [ "BufWritePost" ];
-      pattern = [ "*.js" "*.jsx" "*.ts" "*.tsx" ];
+      event = ["BufWritePost"];
+      pattern = ["*.js" "*.jsx" "*.ts" "*.tsx"];
       group = "auto_test";
       callback = {
         __raw = "function()
@@ -142,8 +142,8 @@
       };
     }
     {
-      event = [ "BufWritePost" ];
-      pattern = [ "*.zig" ];
+      event = ["BufWritePost"];
+      pattern = ["*.zig"];
       group = "auto_test";
       callback = {
         __raw = "function()
@@ -160,8 +160,8 @@
 
     # Auto-reload coverage when test results change
     {
-      event = [ "User" ];
-      pattern = [ "NeotestFinished" ];
+      event = ["User"];
+      pattern = ["NeotestFinished"];
       group = "auto_coverage";
       callback = {
         __raw = "function()

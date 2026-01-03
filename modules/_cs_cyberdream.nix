@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   colorschemes = {
     cyberdream = {
       enable = false;

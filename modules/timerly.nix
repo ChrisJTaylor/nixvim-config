@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   plugins.timerly = {
     enable = true;
     settings = {

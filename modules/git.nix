@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   plugins = {
     fugitive = {
       enable = true;

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # Clipboard configuration moved to profile-specific modules:
   # - GUI profile: ./clipboard-gui.nix (xclip/wl-clipboard)
   # - Terminal profile: ./clipboard-ssh.nix (OSC 52)

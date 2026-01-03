@@ -1,6 +1,6 @@
 # Terminal-optimized profile configuration
 # This module contains settings optimized for terminal-only environments
-{ ... }: {
+{...}: {
   imports = [
     ./clipboard-ssh.nix
     ./tmux-integration.nix

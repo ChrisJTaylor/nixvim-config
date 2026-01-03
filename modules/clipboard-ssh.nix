@@ -1,7 +1,7 @@
 # SSH clipboard configuration
 # Optimized for SSH/terminal environments using OSC 52 escape sequences
 # Supports Ghostty, Windows Terminal, and other modern terminals
-{ ... }: {
+{...}: {
   opts = {
     clipboard = "unnamedplus";
   };
@@ -13,7 +13,7 @@
       local tmux = os.getenv("TMUX")
       local term = os.getenv("TERM") or ""
       local wsl = os.getenv("WSL_DISTRO_NAME")
-      
+
       if ssh then
         -- SSH environment detected, configure OSC 52
         print("SSH session detected - configuring OSC 52 clipboard")
@@ -28,11 +28,11 @@
             ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
           },
         }
-        
+
         -- Note: tmux configuration is handled by tmux-integration.nix module
       end
     end
-    
+
     -- Clipboard health check function
     local function test_clipboard()
       local test_text = "nixvim-clipboard-test-" .. os.time()
@@ -46,21 +46,21 @@
         end
       end)
     end
-    
+
     -- Setup clipboard on config load
     setup_ssh_clipboard()
-    
+
     -- Create user commands for clipboard testing
     vim.api.nvim_create_user_command('ClipboardTest', test_clipboard, {
       desc = 'Test clipboard functionality'
     })
-    
+
     vim.api.nvim_create_user_command('ClipboardStatus', function()
       local ssh = os.getenv("SSH_CLIENT") or os.getenv("SSH_TTY")
       local tmux = os.getenv("TMUX")
       local term = os.getenv("TERM") or ""
       local clipboard_name = vim.g.clipboard and vim.g.clipboard.name or "system"
-      
+
       print("Clipboard Status:")
       print("  Provider: " .. clipboard_name)
       print("  SSH: " .. (ssh and "✓" or "✗"))
@@ -75,7 +75,7 @@
   # SSH-optimized clipboard keybindings
   keymaps = [
     {
-      mode = [ "n" "v" ];
+      mode = ["n" "v"];
       key = "<leader>y";
       action = "\"+y";
       options = {
@@ -84,7 +84,7 @@
       };
     }
     {
-      mode = [ "n" "v" ];
+      mode = ["n" "v"];
       key = "<leader>p";
       action = "\"+p";
       options = {
@@ -93,7 +93,7 @@
       };
     }
     {
-      mode = [ "n" ];
+      mode = ["n"];
       key = "<leader>yt";
       action = ":ClipboardTest<CR>";
       options = {
@@ -102,7 +102,7 @@
       };
     }
     {
-      mode = [ "n" ];
+      mode = ["n"];
       key = "<leader>ys";
       action = ":ClipboardStatus<CR>";
       options = {
