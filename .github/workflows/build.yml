@@ -13,5 +13,8 @@ jobs:
       - name: Build terminal flavour
         run: nix build .#terminal
 
+      - name: Check Formatting
+        run: nix develop --command just format-check
+
       - name: Run tests
-        run: nix flake check
+        run: nix flake check --all-systems

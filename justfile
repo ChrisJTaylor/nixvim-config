@@ -37,3 +37,8 @@ check options="":
 [group('quality')]
 format:
   nix fmt .
+
+# check formatting of nix files without modifying them
+[group('quality')]
+check-format:
+  nix fmt . -- --check
