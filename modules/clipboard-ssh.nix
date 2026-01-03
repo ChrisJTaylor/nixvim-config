@@ -94,7 +94,7 @@
     }
     {
       mode = [ "n" ];
-      key = "<leader>ct";
+      key = "<leader>yt";
       action = ":ClipboardTest<CR>";
       options = {
         desc = "Test clipboard functionality";
@@ -103,7 +103,7 @@
     }
     {
       mode = [ "n" ];
-      key = "<leader>cs";
+      key = "<leader>ys";
       action = ":ClipboardStatus<CR>";
       options = {
         desc = "Show clipboard status";

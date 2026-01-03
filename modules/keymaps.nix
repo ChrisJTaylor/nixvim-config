@@ -513,7 +513,7 @@
 
     {
       mode = "n";
-      key = "<leader>cr";
+      key = "<leader>cR";
       options.silent = true;
       action = "<cmd>:CopilotRefresh<CR>";
       options.desc = "Refresh repository context";
