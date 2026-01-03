@@ -551,5 +551,23 @@
       action = "<cmd>Telekasten goto_today<cr>";
       options.desc = "Today's note";
     }
+    {
+      mode = "n";
+      key = "<leader>zc";
+      action = "<cmd>Telekasten show_calendar<cr>";
+      options.desc = "Show calendar";
+    }
+    {
+      mode = "n";
+      key = "<leader>zb";
+      action = "<cmd>Telekasten show_backlinks<cr>";
+      options.desc = "Show backlinks";
+    }
+    {
+      mode = "i";
+      key = "[[";
+      action = "<cmd>Telekasten insert_link<cr>";
+      options.desc = "Insert link automatically when a link is being typed";
+    }
   ];
 }
