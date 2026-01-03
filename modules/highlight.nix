@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   autoGroups = {
     custom_highlights = {
       clear = true;
@@ -7,8 +7,8 @@
 
   autoCmd = [
     {
-      event = [ "ColorScheme" "VimEnter" ];
-      pattern = [ "*" ];
+      event = ["ColorScheme" "VimEnter"];
+      pattern = ["*"];
       group = "custom_highlights";
       callback = {
         __raw = ''
@@ -16,7 +16,7 @@
             -- Schedule the highlight application to ensure it runs after the color scheme is fully loaded
             vim.schedule(function()
               local highlights = {
-                Blame = { fg = "#000000", bg = "#FFFFFF", italic = true },
+                Blame = { fg = "#FFFFFF", bg = "#000000", italic = true },
 
                 -- =========================================================================
                 -- COMMENT STYLING STRATEGY
