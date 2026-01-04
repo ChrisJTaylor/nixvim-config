@@ -1,13 +1,13 @@
 # GUI-optimized profile configuration
 # This module contains settings optimized for GUI environments with transparency effects
-{ ... }: {
+{...}: {
   imports = [
     ./clipboard-gui.nix
   ];
 
-  colorschemes.cyberdream.settings = {
+  colorschemes.everforest.settings = {
     # Enhanced transparency for GUI environments
-    transparent = true;
+    transparent_background = 1;
   };
 
   opts = {

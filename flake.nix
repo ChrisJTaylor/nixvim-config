@@ -7,20 +7,18 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs =
-    inputs @ { self
-    , nixpkgs
-    , nixvim
-    , flake-utils
-    , ...
-    }:
-    let
-      inherit (flake-utils.lib) eachDefaultSystem mkApp;
-    in
+  outputs = inputs @ {
+    self,
+    nixpkgs,
+    nixvim,
+    flake-utils,
+    ...
+  }: let
+    inherit (flake-utils.lib) eachDefaultSystem mkApp;
+  in
     eachDefaultSystem (
-      system:
-      let
-        pkgs = import nixpkgs { inherit system; };
+      system: let
+        pkgs = import nixpkgs {inherit system;};
         makeNixvim = nixvim.legacyPackages.${system}.makeNixvim;
 
         myNixvim = makeNixvim {
@@ -65,6 +63,7 @@
 
           imports = [
             ./modules/_top-level.nix
+            ./modules/colour-scheme.nix
             ./modules/keymaps.nix
             ./modules/autocmds.nix
             ./modules/autosave.nix
@@ -139,6 +138,7 @@
 
           imports = [
             ./modules/_top-level.nix
+            ./modules/colour-scheme.nix
             ./modules/keymaps.nix
             ./modules/autocmds.nix
             ./modules/autosave.nix
@@ -173,21 +173,20 @@
         devTools = with pkgs; [
           neovim
           stylua
-          nixpkgs-fmt
+          alejandra
           luajit
           ripgrep
           fd
           tree-sitter
           just
         ];
-      in
-      {
+      in {
         packages.default = myNixvim.overrideAttrs (oldAttrs: {
           meta = {
             description = "Nixvim configuration for Neovim (GUI-optimized)";
             homepage = "https://github.com/ChrisJTaylor/nixvim-config";
             license = pkgs.lib.licenses.mit;
-            maintainers = [ "ChrisJTaylor" ];
+            maintainers = ["ChrisJTaylor"];
           };
         });
 
@@ -196,7 +195,7 @@
             description = "Nixvim configuration for Neovim (Terminal-optimized)";
             homepage = "https://github.com/ChrisJTaylor/nixvim-config";
             license = pkgs.lib.licenses.mit;
-            maintainers = [ "ChrisJTaylor" ];
+            maintainers = ["ChrisJTaylor"];
           };
         });
 
@@ -218,16 +217,16 @@
           '';
         };
 
-        formatter = pkgs.nixpkgs-fmt;
+        formatter = pkgs.alejandra;
 
         checks = {
-          nixfmt = pkgs.runCommand "check-nixfmt" { buildInputs = [ pkgs.nixpkgs-fmt ]; } ''
+          alejandra = pkgs.runCommand "check-alejandra" {buildInputs = [pkgs.alejandra];} ''
             echo "Checking Nix formatting..."
-            nixpkgs-fmt --check ${./modules} ${./flake.nix} || exit 1
+            alejandra --check ${./modules} ${./flake.nix} || exit 1
             touch $out
           '';
 
-          stylua = pkgs.runCommand "check-stylua" { buildInputs = [ pkgs.stylua ]; } ''
+          stylua = pkgs.runCommand "check-stylua" {buildInputs = [pkgs.stylua];} ''
             echo "Checking Lua formatting..."
             stylua --check ${./modules} || exit 1
             touch $out

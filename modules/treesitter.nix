@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   plugins.treesitter = {
     enable = true;
 
@@ -33,7 +33,7 @@
     nixvimInjections = true;
     nixGrammars = true;
     settings = {
-      ensure_installed = [ ];
+      ensure_installed = [];
       auto_install = false;
     };
   };

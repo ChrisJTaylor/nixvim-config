@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   plugins.coverage = {
     enable = true;
     settings = {
@@ -21,7 +21,7 @@
         };
         rust = {
           coverage_file = "target/tarpaulin/lcov.info";
-          coverage_command = "cargo tarpaulin --out Lcov";
+          coverage_command = "sh -c 'cargo tarpaulin --out Lcov --output-dir target/tarpaulin' --";
         };
         java = {
           coverage_file = "target/site/jacoco/jacoco.xml";

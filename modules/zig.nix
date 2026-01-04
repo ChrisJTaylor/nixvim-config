@@ -1,6 +1,6 @@
-{ ... }: {
+{...}: {
   plugins.zig = {
     enable = true;
-    settings = { };
+    settings = {};
   };
 }

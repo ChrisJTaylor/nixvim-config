@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   plugins.neo-tree = {
     enable = true;
     settings = {
@@ -19,7 +19,7 @@
           visible = true;
           hide_dotfiles = false;
           hide_gitignored = false;
-          never_show = [ ".git" ];
+          never_show = [".git"];
         };
       };
     };

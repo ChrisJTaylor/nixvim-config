@@ -1,7 +1,6 @@
 # tmux integration module for nixvim
 # Automatically configures tmux for optimal clipboard and navigation when detected
-{ pkgs, ... }: {
-
+{pkgs, ...}: {
   # Install tmux if not available (optional, can be commented out)
   extraPackages = with pkgs; [
     tmux
@@ -20,7 +19,7 @@
   extraConfigLua = ''
     -- Tmux Integration and Auto-Configuration
     local tmux_session = os.getenv("TMUX")
-    
+
     -- Configure tmux settings function (global scope)
     local function configure_tmux()
       local tmux_commands = {
@@ -34,7 +33,7 @@
         'bind -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "printf \\"\\033]52;c;%s\\033\\\\\\" \\"$(base64)\\""',
         'bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "printf \\"\\033]52;c;%s\\033\\\\\\" \\"$(base64)\\""',
       }
-      
+
       for _, cmd in ipairs(tmux_commands) do
         local full_cmd = "tmux " .. cmd .. " 2>/dev/null"
         local result = vim.fn.system(full_cmd)
@@ -42,10 +41,10 @@
           print("Note: Could not set tmux option: " .. cmd)
         end
       end
-      
+
       print("✓ tmux auto-configured for OSC 52 clipboard")
     end
-    
+
     if tmux_session then
       -- Auto-configure tmux on nixvim startup
       vim.api.nvim_create_autocmd("VimEnter", {
@@ -54,15 +53,15 @@
         end,
         once = true,
       })
-      
+
       -- Set tmux-specific options
       vim.opt.title = true
       vim.opt.titlestring = "nixvim: %f"
-      
+
       -- Tmux-aware terminal settings
       vim.opt.mouse = "a"
     end
-    
+
     -- Create command to manually reconfigure tmux if needed
     vim.api.nvim_create_user_command('TmuxConfigure', function()
       if tmux_session then
@@ -77,7 +76,7 @@
 
   keymaps = [
     {
-      mode = [ "n" ];
+      mode = ["n"];
       key = "<leader>tm";
       action = ":TmuxConfigure<CR>";
       options = {

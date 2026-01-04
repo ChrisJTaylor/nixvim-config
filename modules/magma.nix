@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   plugins.magma-nvim = {
     enable = pkgs.stdenv.isLinux;
     settings = {

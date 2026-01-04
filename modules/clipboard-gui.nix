@@ -1,6 +1,6 @@
 # GUI clipboard configuration
 # Optimized for local GUI environments with X11/Wayland display servers
-{ pkgs, ... }: {
+{pkgs, ...}: {
   clipboard.providers = {
     xclip.enable = pkgs.stdenv.isLinux;
   };
@@ -12,7 +12,7 @@
   # GUI-specific clipboard keybindings
   keymaps = [
     {
-      mode = [ "n" "v" ];
+      mode = ["n" "v"];
       key = "<leader>y";
       action = "\"+y";
       options = {
@@ -21,7 +21,7 @@
       };
     }
     {
-      mode = [ "n" "v" ];
+      mode = ["n" "v"];
       key = "<leader>p";
       action = "\"+p";
       options = {

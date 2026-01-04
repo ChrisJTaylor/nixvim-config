@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   plugins.neotest = {
     enable = true;
     adapters = {
@@ -31,7 +31,7 @@
         settings = {
           jestCommand = "npm test --";
           jestConfigFile = "jest.config.js";
-          env = { CI = true; };
+          env = {CI = true;};
           cwd = "function(path) return vim.fn.getcwd() end";
         };
       };
@@ -47,7 +47,7 @@
       log_level = 1;
       output = {
         enabled = true;
-        open_on_run = true;
+        open_on_run = false;
       };
       output_panel = {
         enabled = false;
@@ -85,7 +85,7 @@
           clear_target = "T";
           debug = "d";
           debug_marked = "D";
-          expand = [ "<CR>" "<2-LeftMouse>" ];
+          expand = ["<CR>" "<2-LeftMouse>"];
           expand_all = "e";
           jumpto = "i";
           mark = "m";

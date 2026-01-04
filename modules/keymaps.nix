@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   globals = {
     mapleader = " ";
     maplocalleader = "<Tab>";
@@ -513,7 +513,7 @@
 
     {
       mode = "n";
-      key = "<leader>cr";
+      key = "<leader>cR";
       options.silent = true;
       action = "<cmd>:CopilotRefresh<CR>";
       options.desc = "Refresh repository context";
@@ -524,6 +524,50 @@
       options.silent = true;
       action = "<cmd>:UndotreeToggle<CR>";
       options.desc = "Show undo tree";
+    }
+
+    # telekasten
+    {
+      mode = "n";
+      key = "<leader>zf";
+      action = "<cmd>Telekasten find_notes<cr>";
+      options.desc = "Find notes";
+    }
+    {
+      mode = "n";
+      key = "<leader>zg";
+      action = "<cmd>Telekasten search_notes<cr>";
+      options.desc = "Search notes";
+    }
+    {
+      mode = "n";
+      key = "<leader>zn";
+      action = "<cmd>Telekasten new_note<cr>";
+      options.desc = "New note";
+    }
+    {
+      mode = "n";
+      key = "<leader>zt";
+      action = "<cmd>Telekasten goto_today<cr>";
+      options.desc = "Today's note";
+    }
+    {
+      mode = "n";
+      key = "<leader>zc";
+      action = "<cmd>Telekasten show_calendar<cr>";
+      options.desc = "Show calendar";
+    }
+    {
+      mode = "n";
+      key = "<leader>zb";
+      action = "<cmd>Telekasten show_backlinks<cr>";
+      options.desc = "Show backlinks";
+    }
+    {
+      mode = "i";
+      key = "[[";
+      action = "<cmd>Telekasten insert_link<cr>";
+      options.desc = "Insert link automatically when a link is being typed";
     }
   ];
 }

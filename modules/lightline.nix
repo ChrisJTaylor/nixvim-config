@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   plugins.lightline = {
     enable = true;
     autoReload = true;
@@ -28,7 +28,7 @@
       component_function = {
         gitbranch = "FugitiveHead";
       };
-      inactive = [ ];
+      inactive = [];
       mode_map = {
         "<C-s>" = "SB";
         "<C-v>" = "VB";

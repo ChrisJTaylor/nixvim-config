@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   plugins.vimwiki = {
     enable = true;
     settings = {
