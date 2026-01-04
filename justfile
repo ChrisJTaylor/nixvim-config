@@ -40,5 +40,5 @@ format:
 
 # check formatting of nix files without modifying them
 [group('quality')]
-check-format:
+format-check:
   nix fmt . -- --check
