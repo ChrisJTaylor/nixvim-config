@@ -40,3 +40,27 @@ jobs:
           ollama-model: "qwen3-coder:30b"
           review-focus: "bugs,security,performance"
           max-comments: 20
+
+  auto-merge:
+    needs: [build, review]
+    if: |
+      github.event_name == 'pull_request' &&
+      contains(github.event.pull_request.labels.*.name, 'automerge')
+    runs-on: [self-hosted, nix]
+    permissions:
+      pull-requests: write
+      contents: write
+    steps:
+      - uses: pascalgn/automerge-action@v0.16.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGE_LABELS: "automated,!hold"
+          MERGE_METHOD: "squash"
+          MERGE_COMMIT_MESSAGE: "pull-request-title"
+          MERGE_FORKS: "false"
+          MERGE_RETRIES: "12"
+          MERGE_RETRY_SLEEP: "600000"
+          MERGE_REQUIRED_APPROVALS: "0"
+          MERGE_DELETE_BRANCH: "true"
+          UPDATE_LABELS: ""
+          UPDATE_METHOD: "rebase"
