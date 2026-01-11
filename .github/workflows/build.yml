@@ -1,5 +1,11 @@
 name: Build with Nix
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
@@ -18,3 +24,18 @@ jobs:
 
       - name: Run tests
         run: nix flake check --all-systems
+
+  review:
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: [self-hosted, nix]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: machinology/mach-pull-request-review-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          ollama-url: ${{ secrets.OLLAMA_URL }}
+          ollama-model: "qwen3-coder:30b"
+          review-focus: "bugs,security,performance"
+          max-comments: 20
