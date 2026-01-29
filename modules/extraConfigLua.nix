@@ -5,7 +5,6 @@
 
   extraPlugins = with pkgs.vimPlugins; [
     plenary-nvim
-    telekasten-nvim
   ];
 
   extraConfigLua = ''
@@ -175,17 +174,6 @@
           end
         end
       end,
-    })
-
-    require('telekasten').setup({
-      home = vim.fn.expand("~/notes"),
-      -- dailies = vim.fn.expand("~/notes/daily"),
-      -- weeklies = vim.fn.expand("~/notes/weekly"),
-      -- templates = vim.fn.expand("~/notes/templates"),
-
-      -- Optional: customize behavior
-      -- extension = ".md",
-      -- template_new_note = vim.fn.expand("~/notes/templates/new_note.md"),
     })
   '';
 }

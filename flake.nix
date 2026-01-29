@@ -89,7 +89,6 @@
             ./modules/extraConfigLua.nix
             ./modules/zig.nix
             ./modules/smear-cursor.nix
-            ./modules/vimwiki.nix
             ./modules/colorising.nix
             ./modules/highlight.nix
             ./modules/gui-profile.nix # GUI-optimized settings
@@ -163,7 +162,6 @@
             ./modules/extraConfigLua.nix
             ./modules/zig.nix
             ./modules/smear-cursor.nix
-            ./modules/vimwiki.nix
             ./modules/colorising.nix
             ./modules/highlight.nix
             ./modules/terminal-profile.nix # Terminal-optimized settings

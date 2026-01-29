@@ -2,39 +2,18 @@
   plugins.treesitter = {
     enable = true;
 
-    grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-      bash
-      json
-      lua
-      make
-      markdown
-      regex
-      toml
-      vim
-      vimdoc
-      xml
-      javascript
-      typescript
-      tsx
-      java
-      kotlin
-      rust
-      go
-      zig
-      asm
-      c
-      cpp
-      python
-      objc
-      ruby
-    ];
-
     folding.enable = false;
     nixvimInjections = true;
     nixGrammars = true;
     settings = {
       ensure_installed = [];
       auto_install = false;
+      highlight = {
+        enable = true;
+      };
+      indent = {
+        enable = true;
+      };
     };
   };
 
@@ -48,7 +27,7 @@
   };
 
   plugins.treesitter-refactor = {
-    enable = true;
+    enable = false;
     settings = {
       highlight_current_scope.enable = true;
       highlight_definitions = {
@@ -62,6 +41,4 @@
 
   plugins.refactoring.enable = true;
   plugins.refactoring.enableTelescope = true;
-
-  plugins.web-devicons.enable = true;
 }
