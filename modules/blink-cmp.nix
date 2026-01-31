@@ -23,12 +23,20 @@
         };
         documentation = {
           auto_show = true;
+          auto_show_delay_ms = 100;
           treesitter_highlighting = true;
         };
         ghost_text.enabled = true;
         menu = {
           enabled = true;
           auto_show = true;
+        };
+        # Speed optimizations
+        trigger = {
+          show_on_insert_on_trigger_character = true;
+        };
+        list = {
+          max_items = 200;
         };
       };
 
@@ -102,6 +110,9 @@
             fallbacks = ["buffer"];
             score_offset = 1000;
             min_keyword_length = 0;
+            # Speed optimizations for LSP completions
+            timeout_ms = 500;
+            should_show_items = true;
           };
           ripgrep = {
             async = true;
@@ -123,11 +134,12 @@
             module = "blink-copilot";
             name = "copilot";
             score_offset = 50;
+            timeout_ms = 1000;
             opts = {
               max_completions = 20;
               max_attempts = 4;
               kind = "Copilot";
-              debounce = 750;
+              debounce = 150;
               auto_refresh = {
                 backward = true;
                 forward = true;
