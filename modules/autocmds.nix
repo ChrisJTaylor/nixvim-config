@@ -3,6 +3,7 @@
     highlight_yank.clear = true;
     auto_test.clear = true;
     auto_coverage.clear = true;
+    csharp_indent.clear = true;
   };
 
   autoCmd = [
@@ -10,6 +11,26 @@
       event = ["TextYankPost"];
       group = "highlight_yank";
       command = "silent! lua vim.highlight.on_yank{higroup='Search', timeout=200}";
+    }
+
+    # C# specific indentation settings
+    {
+      event = ["FileType"];
+      pattern = ["cs"];
+      group = "csharp_indent";
+      callback = {
+        __raw = "function()
+              vim.bo.tabstop = 4
+              vim.bo.softtabstop = 4
+              vim.bo.shiftwidth = 4
+              vim.bo.expandtab = true
+              vim.bo.autoindent = true
+              vim.bo.smartindent = true
+              vim.bo.cindent = true
+              -- C-style indenting options for C#
+              vim.bo.cinoptions = 'N-s,E-s,f0,{0,}0,^0,L-1,:0,=s,l0,b0,gs,hs,ps,ts,is,+s,c3,C0,/0,(2s,us,U0,w0,W0,m0,j0,J0,)20,*70,#0'
+            end";
+      };
     }
 
     {

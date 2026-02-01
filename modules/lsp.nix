@@ -51,11 +51,30 @@
           "targets"
         ];
         settings = {
+          # Speed optimizations for faster startup
           analyzeOpenDocumentsOnly = true;
           enableImportCompletion = true;
           organizeImportsOnFormat = true;
           enableRoslynAnalyzers = true;
           enableDecompilationSupport = true;
+          # Performance settings
+          RoslynExtensionsOptions = {
+            enableAnalyzersSupport = true;
+            enableImportCompletion = true;
+            enableDecompilationSupport = true;
+            # Analyze only open files for faster startup
+            analyzeOpenDocumentsOnly = true;
+          };
+          # Faster semantic highlighting
+          FormattingOptions = {
+            enableEditorConfigSupport = true;
+            organizeImports = true;
+          };
+          # Optimize completion
+          completionOptions = {
+            provideRegexCompletions = false;
+            provideObjectInitializerCompletion = true;
+          };
         };
       };
       pylsp = {

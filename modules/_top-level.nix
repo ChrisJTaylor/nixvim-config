@@ -7,6 +7,13 @@
     number = true;
     relativenumber = true;
     shiftwidth = 2;
+    tabstop = 2;
+    softtabstop = 2;
+    expandtab = true;
+    # Auto-indent settings
+    autoindent = true;
+    smartindent = true;
+    cindent = true;
     # Clipboard setting moved to profile-specific modules
     undofile = true;
     ignorecase = true;

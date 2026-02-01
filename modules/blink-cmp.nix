@@ -23,20 +23,28 @@
         };
         documentation = {
           auto_show = true;
-          auto_show_delay_ms = 100;
+          auto_show_delay_ms = 50;
           treesitter_highlighting = true;
         };
         ghost_text.enabled = true;
         menu = {
           enabled = true;
           auto_show = true;
+          draw = {
+            columns = [
+              ["label" "label_description" "kind_icon" "kind"]
+            ];
+          };
         };
-        # Speed optimizations
+        # Aggressive speed optimizations for instant completions
         trigger = {
           show_on_insert_on_trigger_character = true;
+          show_on_keyword = true;
+          show_on_trigger_character = true;
         };
         list = {
           max_items = 200;
+          selection = "auto_insert";
         };
       };
 
@@ -102,7 +110,7 @@
           "git"
           "dictionary"
         ];
-        min_keyword_length = 1;
+        min_keyword_length = 0;
         providers = {
           lsp = {
             async = true;
@@ -110,9 +118,10 @@
             fallbacks = ["buffer"];
             score_offset = 1000;
             min_keyword_length = 0;
-            # Speed optimizations for LSP completions
-            timeout_ms = 200;
+            # Aggressive speed optimizations for instant LSP completions
+            timeout_ms = 100;
             should_show_items = true;
+            max_items = 100;
           };
           ripgrep = {
             async = true;
@@ -134,12 +143,13 @@
             module = "blink-copilot";
             name = "copilot";
             score_offset = 50;
-            timeout_ms = 1000;
+            timeout_ms = 500;
+            max_items = 10;
             opts = {
-              max_completions = 20;
-              max_attempts = 4;
+              max_completions = 10;
+              max_attempts = 2;
               kind = "Copilot";
-              debounce = 150;
+              debounce = 100;
               auto_refresh = {
                 backward = true;
                 forward = true;
