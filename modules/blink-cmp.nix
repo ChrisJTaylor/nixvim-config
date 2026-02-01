@@ -111,7 +111,7 @@
             score_offset = 1000;
             min_keyword_length = 0;
             # Speed optimizations for LSP completions
-            timeout_ms = 500;
+            timeout_ms = 200;
             should_show_items = true;
           };
           ripgrep = {
