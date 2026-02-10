@@ -1,16 +1,16 @@
-{...}: {
+{pkgs, ...}: {
   plugins.lsp-status = {
     enable = true;
   };
 
   plugins.lsp-lines = {
-    enable = true;
+    enable = false; # Disabled for performance - use standard inline diagnostics
   };
 
   plugins.lsp-signature = {
     enable = true;
     settings = {
-      always_trigger = true;
+      always_trigger = false; # Disabled for performance - trigger manually with (
       extra_trigger_chars = [
         "("
         ","
@@ -40,6 +40,7 @@
       omnisharp = {
         enable = true;
         autostart = true;
+        package = pkgs.omnisharp-roslyn;
         filetypes = [
           "cs"
           "vb"
@@ -99,12 +100,27 @@
         enable = true;
         autostart = true;
         settings = {
-          staticcheck = true;
+          # Performance optimizations - disable expensive real-time checks
+          staticcheck = false; # CRITICAL: Staticcheck is too slow for real-time use
           completeUnimported = true;
           usePlaceholders = true;
+          # Use gopls built-in analyses instead of staticcheck
           analyses = {
-            unusedparams = true;
+            unusedparams = true; # Disable this if it still feels sluggish
+            shadow = false;
+            fieldalignment = false;
+            nilness = false;
+            unusedwrite = false;
           };
+          # Performance settings
+          gofumpt = true; # Use faster formatter
+          semanticTokens = false; # Disable semantic tokens for performance
+          # Optimize completion
+          matcher = "Fuzzy";
+          symbolMatcher = "FastFuzzy";
+          # Limit deep analysis
+          deepCompletion = false;
+          experimentalPostfixCompletions = false;
         };
       };
       ts_ls = {

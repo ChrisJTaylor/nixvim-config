@@ -44,7 +44,10 @@
         };
         list = {
           max_items = 200;
-          selection = "auto_insert";
+          selection = {
+            auto_insert = true;
+            preselect = true;
+          };
         };
       };
 
