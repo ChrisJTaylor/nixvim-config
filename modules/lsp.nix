@@ -1,4 +1,163 @@
 {pkgs, ...}: {
+  # Configure inline diagnostic messages (virtual text with multi-line support)
+  extraConfigLua = ''
+    -- Helper function to split long messages into multiple lines
+    local function split_message(message, max_width)
+      if #message <= max_width then
+        return {message}
+      end
+
+      local lines = {}
+      local current_line = ""
+
+      for word in message:gmatch("%S+") do
+        -- Handle words longer than max_width by splitting them
+        if #word > max_width then
+          -- Flush current line first
+          if current_line ~= "" then
+            table.insert(lines, current_line)
+            current_line = ""
+          end
+
+          -- Split the long word into chunks
+          while #word > max_width do
+            table.insert(lines, word:sub(1, max_width))
+            word = word:sub(max_width + 1)
+          end
+
+          -- Add remaining part of word
+          if #word > 0 then
+            current_line = word
+          end
+        elseif #current_line + #word + 1 <= max_width then
+          current_line = current_line == "" and word or current_line .. " " .. word
+        else
+          if current_line ~= "" then
+            table.insert(lines, current_line)
+          end
+          current_line = word
+        end
+      end
+
+      if current_line ~= "" then
+        table.insert(lines, current_line)
+      end
+
+      -- Limit to 3 lines to avoid screen clutter
+      if #lines > 3 then
+        lines = {lines[1], lines[2], lines[3] .. "..."}
+      end
+
+      return lines
+    end
+
+    -- Custom diagnostic handler for multi-line virtual text
+    local ns = vim.api.nvim_create_namespace("custom_diagnostics")
+    local updating = false  -- Guard flag to prevent recursion
+
+    local function show_diagnostics(bufnr)
+      -- Prevent recursive calls
+      if updating then
+        return
+      end
+
+      updating = true
+
+      -- Clear previous custom diagnostics
+      pcall(vim.api.nvim_buf_clear_namespace, bufnr, ns, 0, -1)
+
+      local diagnostics = vim.diagnostic.get(bufnr)
+      for _, diagnostic in ipairs(diagnostics) do
+        local lines = split_message(diagnostic.message, 80)
+
+        if #lines == 1 then
+          -- Single line: use standard virtual_text
+          pcall(vim.api.nvim_buf_set_extmark, bufnr, ns, diagnostic.lnum, 0, {
+            virt_text = {{" ● " .. lines[1], "DiagnosticVirtualText" .. vim.diagnostic.severity[diagnostic.severity]}},
+            virt_text_pos = "eol",
+          })
+        else
+          -- Multi-line: use virt_lines for continuation
+          local virt_lines = {}
+          for i, line in ipairs(lines) do
+            if i == 1 then
+              -- First line at end of code line
+              pcall(vim.api.nvim_buf_set_extmark, bufnr, ns, diagnostic.lnum, 0, {
+                virt_text = {{" ● " .. line, "DiagnosticVirtualText" .. vim.diagnostic.severity[diagnostic.severity]}},
+                virt_text_pos = "eol",
+              })
+            else
+              -- Continuation lines below
+              table.insert(virt_lines, {{"   " .. line, "DiagnosticVirtualText" .. vim.diagnostic.severity[diagnostic.severity]}})
+            end
+          end
+
+          if #virt_lines > 0 then
+            pcall(vim.api.nvim_buf_set_extmark, bufnr, ns, diagnostic.lnum, 0, {
+              virt_lines = virt_lines,
+            })
+          end
+        end
+      end
+
+      updating = false
+    end
+
+    -- Set up autocommands to update diagnostics
+    local group = vim.api.nvim_create_augroup("CustomDiagnostics", { clear = true })
+
+    -- Use a debounced approach to avoid excessive updates
+    local timers = {}
+    vim.api.nvim_create_autocmd("DiagnosticChanged", {
+      group = group,
+      callback = function(args)
+        local bufnr = args.buf
+
+        -- Cancel existing timer for this buffer
+        if timers[bufnr] then
+          timers[bufnr]:stop()
+        end
+
+        -- Create new debounced timer
+        timers[bufnr] = vim.defer_fn(function()
+          if vim.api.nvim_buf_is_valid(bufnr) then
+            show_diagnostics(bufnr)
+          end
+          timers[bufnr] = nil
+        end, 100)  -- 100ms debounce
+      end,
+    })
+
+    -- Update on buffer enter (no debounce needed)
+    vim.api.nvim_create_autocmd("BufEnter", {
+      group = group,
+      callback = function(args)
+        vim.defer_fn(function()
+          if vim.api.nvim_buf_is_valid(args.buf) then
+            show_diagnostics(args.buf)
+          end
+        end, 50)
+      end,
+    })
+
+    -- Configure standard diagnostics (disable virtual_text since we handle it)
+    vim.diagnostic.config({
+      virtual_text = false,  -- We handle this ourselves
+      signs = true,
+      underline = true,
+      update_in_insert = false,
+      severity_sort = true,
+      float = {
+        border = "rounded",
+        source = "always",
+        header = "",
+        prefix = "",
+        wrap = true,
+        max_width = 80,
+      },
+    })
+  '';
+
   plugins.lsp-status = {
     enable = true;
   };
