@@ -18,20 +18,16 @@
       callback = {
         __raw = "function()
               vim.cmd('!go mod tidy')
-              vim.lsp.buf.execute_command({ command = 'gopls.workspace.reload' })
             end";
       };
     }
-    # Combined Go LSP and auto-test on save
+    # Auto-test on save for Go files
     {
       event = ["BufWritePost"];
       pattern = ["*.go"];
       group = "auto_test";
       callback = {
         __raw = "function()
-              -- LSP reload for Go
-              vim.lsp.buf.execute_command({ command = 'gopls.workspace.reload' })
-              
               -- Auto-test with coverage
               local file = vim.fn.expand('%:p')
               vim.defer_fn(function()
