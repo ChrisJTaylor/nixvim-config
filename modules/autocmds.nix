@@ -34,7 +34,10 @@
                 require('neotest').run.run(file)
                 vim.defer_fn(function()
                   vim.cmd('CoverageLoad')
-                end, 1000)
+                  vim.defer_fn(function()
+                    vim.cmd('CoverageShow')
+                  end, 500)
+                end, 500)
               end, 100)
             end";
       };
@@ -65,22 +68,11 @@
                 require('neotest').run.run(file)
                 vim.defer_fn(function()
                   vim.cmd('CoverageLoad')
-                end, 1000)
+                  vim.defer_fn(function()
+                    vim.cmd('CoverageShow')
+                  end, 500)
+                end, 500)
               end, 100)
-            end";
-      };
-    }
-
-    # Auto-reload coverage when test results change
-    {
-      event = ["User"];
-      pattern = ["NeotestFinished"];
-      group = "auto_coverage";
-      callback = {
-        __raw = "function()
-              vim.defer_fn(function()
-                vim.cmd('CoverageLoad')
-              end, 500)
             end";
       };
     }
