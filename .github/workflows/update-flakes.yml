@@ -11,19 +11,8 @@ on:
     - cron: "0 12 * * 0" # every Sunday at 12pm
 
 jobs:
-  lockfile:
+  update-flakes:
+    uses: machinology/mach-shared-workflows/.github/workflows/update-flakes.yml@v1
     permissions:
-      contents: write
       pull-requests: write
-    runs-on: [self-hosted, nix]
-    steps:
-      - uses: actions/checkout@v4
-      - uses: DeterminateSystems/update-flake-lock@main
-        with:
-          token: ${{ secrets.PR_UPDATE_TOKEN }}
-          pr-title: "Update flake inputs"
-          pr-labels: |
-            dependencies
-            automated
-            automerge
-          inputs: ${{ github.event.inputs.flakes-to-update }}
+      contents: write
