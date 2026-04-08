@@ -45,9 +45,7 @@
               pkgs.rubyPackages.solargraph # Ruby LSP server
 
               # JavaScript/TypeScript development
-              pkgs.nodejs_20 # Node.js runtime
-              pkgs.nodePackages.typescript # TypeScript compiler
-              pkgs.nodePackages.typescript-language-server # TS LSP server
+              pkgs.nodejs_24 # Node.js runtime
 
               # Java development
               pkgs.jdk21 # Java Development Kit
