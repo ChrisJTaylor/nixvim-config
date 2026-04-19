@@ -5,24 +5,28 @@ This is a **NixVim configuration repository** providing a comprehensive Neovim s
 ## Build/Test Commands
 
 ### Build & Run
-- **Build GUI**: `just build-gui` or `nix build .` (test GUI configuration)
-- **Build Terminal**: `just build-term` or `nix build .#terminal` (test terminal configuration)
-- **Run GUI**: `just run-gui` or `nix run .` (default GUI version)
-- **Run Terminal**: `just run-term` or `nix run .#terminal` (terminal version with OSC 52 clipboard)
-- **Dev Shell**: `nix develop` (includes stylua, nixpkgs-fmt, just, ripgrep, fd, tree-sitter)
+- **Build GUI**: `just build-gui` or `nix build .`
+- **Build Terminal**: `just build-term` or `nix build .#terminal`
+- **Run GUI**: `just run-gui` or `nix run .`
+- **Run Terminal**: `just run-term` or `nix run .#terminal`
+- **Dev Shell**: `nix develop` (includes stylua, alejandra, just, ripgrep, fd, tree-sitter)
 
 ### Quality & Maintenance
-- **Check/Lint**: `just check` or `nix flake check` (validates formatting, builds all profiles)
-- **Format Code**: `just format` or `nix fmt .` (runs nixpkgs-fmt on all .nix files)
+- **Check/Lint**: `just check` or `nix flake check` (validates formatting, builds both profiles)
+- **Format Code**: `just format` or `nix fmt .` (runs alejandra formatter on .nix files)
 - **Format Check**: `just format-check` (verify formatting without modifying files)
-- **Update Dependencies**: `just update` or `nix flake update` (updates flake.lock)
+- **Update Flake**: `just update` or `nix flake update` (updates flake.lock)
+- **Version Bump**: `just bump` (auto-bump version via cocogitto)
 
 ### Testing (Inside Neovim)
-- **Run Current Test**: `:lua require("neotest").run.run()` (test under cursor)
-- **Run File Tests**: `:lua require("neotest").run.run(vim.fn.expand("%"))` (all tests in file)
-- **Toggle Test Summary**: `:lua require("neotest").summary.toggle()` (test panel)
-- **Toggle Test Output**: `:lua require("neotest").output_panel.toggle()` (test output)
-- **Clipboard Test**: Use `<leader>ct` keymap to test clipboard functionality
+- **Run Single Test**: `:lua require("neotest").run.run()` (test under cursor/nearest)
+- **Run File Tests**: `:lua require("neotest").run.run(vim.fn.expand("%"))` (all tests in current file)
+- **Run Last Test**: `:lua require("neotest").run.run_last()` (repeat last test run)
+- **Debug Test**: `:lua require("neotest").run.run({strategy = "dap"})` (debug nearest test)
+- **Toggle Summary**: `:lua require("neotest").summary.toggle()` (test tree panel)
+- **Toggle Output**: `:lua require("neotest").output_panel.toggle()` (test output panel)
+- **Stop Tests**: `:lua require("neotest").run.stop()` (stop running tests)
+- **Clipboard Test**: `<leader>ct` keymap to test clipboard functionality
 
 ## Code Style & Structure
 
@@ -33,11 +37,12 @@ This is a **NixVim configuration repository** providing a comprehensive Neovim s
 - **Plugin Config**: Use nixvim's declarative plugin options, NOT raw Lua setup() calls
 
 ### Formatting & Style
-- **Formatters**: nixpkgs-fmt for .nix files, stylua for .lua files (if any)
+- **Formatters**: alejandra (NOT nixpkgs-fmt) for .nix files, stylua for .lua files
 - **Indentation**: 2 spaces (no tabs) throughout entire codebase
 - **Line Length**: No hard limit, but keep lines readable (typically < 120 chars)
 - **Trailing Commas**: Not required in Nix attribute sets/lists
 - **Comments**: Use `#` for Nix comments, `--` for Lua (in extraConfigLua strings)
+- **Attribute Sets**: Prefer multi-line format for readability when more than 2 attributes
 
 ### File Organization
 - **Module Location**: All modules in `modules/` directory
@@ -94,6 +99,7 @@ This is a **NixVim configuration repository** providing a comprehensive Neovim s
 ### Platform Support
 - **Linux**: Full support including Jupyter/Magma integration, X11 clipboard (xclip), Wayland (wl-clipboard)
 - **macOS**: Full support except Magma (disabled due to ueberzug++ dependency issues)
+  - **Note**: Nushell LSP is disabled on macOS due to known test failures in nushell 0.112.1 (see modules/lsp.nix:321)
 - **Windows**: Via WSL2 (tested and working)
 - **SSH/Remote**: OSC 52 clipboard support for seamless remote development
 

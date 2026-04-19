@@ -319,7 +319,7 @@
         autostart = true;
       };
       nushell = {
-        enable = true;
+        enable = false; # Disabled on macOS due to test failures - re-enable when nixpkgs nushell is fixed
         autostart = true;
       };
       kotlin_language_server = {
