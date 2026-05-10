@@ -35,9 +35,6 @@
           cwd = "function(path) return vim.fn.getcwd() end";
         };
       };
-      vitest = {
-        enable = true;
-      };
       zig = {
         enable = true;
       };

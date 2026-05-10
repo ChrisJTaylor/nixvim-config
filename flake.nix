@@ -79,6 +79,7 @@
             ./modules/magma.nix
             ./modules/none-ls-format.nix
             ./modules/testing.nix
+            ./modules/vim-test.nix
             ./modules/render-markdown.nix
             ./modules/coverage.nix
             ./modules/git.nix
@@ -150,6 +151,7 @@
             ./modules/magma.nix
             ./modules/none-ls-format.nix
             ./modules/testing.nix
+            ./modules/vim-test.nix
             ./modules/render-markdown.nix
             ./modules/coverage.nix
             ./modules/git.nix

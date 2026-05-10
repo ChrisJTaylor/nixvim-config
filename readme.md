@@ -46,7 +46,8 @@ home.packages = [ inputs.nixvim-config.packages.${system}.default ];
   - 🟢 **Green**: Fully covered lines
   - 🟠 **Orange**: Partially covered lines
   - 🔴 **Red**: Uncovered lines
-- **Interactive test panel** with neotest integration
+- **Interactive test panel** with neotest integration where supported
+- **Smart test runner selection**: Vitest uses `vim-test` (free), while Jest and other languages use `neotest`
 - **Multi-framework support** per language
 
 **Supported Languages & Frameworks**:
@@ -57,6 +58,12 @@ home.packages = [ inputs.nixvim-config.packages.${system}.default ];
 - **Rust**: Cargo test
 - **Java**: JUnit, TestNG
 - **JavaScript/TypeScript**: Jest, Vitest
+
+**Test runner note**:
+- **Vitest** uses `vim-test` for nearest/file/suite/last test execution
+- **Jest** uses `neotest-jest`
+- **Other supported languages** continue to use their `neotest` adapters
+- The `<leader>t...` mappings automatically choose the appropriate backend
 - **Zig**: Built-in testing
 
 ### 🤖 GitHub Copilot Integration
@@ -130,20 +137,22 @@ home.packages = [ inputs.nixvim-config.packages.${system}.default ];
 
 | Key | Action | Description |
 |-----|--------|-------------|
-| `<leader>ts` | `:Neotest summary` | Show test panel |
-| `<leader>tr` | `run all tests` | Run all tests in project |
-| `<leader>tf` | `run file tests` | Run tests in current file |
-| `<leader>tn` | `run nearest test` | Run test under cursor |
-| `<leader>tl` | `run last test` | Re-run last test |
-| `<leader>tw` | `toggle watch` | **Auto-run tests on save** |
-| `<leader>td` | `debug test` | Debug nearest test |
-| `<leader>to` | `:Neotest output` | Show test output |
+| `<leader>ts` | `:SmartTestSummary` | Show test panel when supported (`neotest`) |
+| `<leader>tr` | `:SmartTestSuite` | Run all tests in project |
+| `<leader>tf` | `:SmartTestFile` | Run tests in current file |
+| `<leader>tn` | `:SmartTestNearest` | Run test under cursor |
+| `<leader>tl` | `:SmartTestLast` | Re-run last test |
+| `<leader>tw` | `:SmartTestWatch` | Toggle watch current file when supported |
+| `<leader>td` | `:SmartTestDebug` | Debug nearest test when supported |
+| `<leader>to` | `:SmartTestOutput` | Show test output |
 | `<leader>ll` | `:CoverageLoad` | **Load coverage data** |
 | `<leader>ls` | `:CoverageShow` | Show coverage highlights |
 | `<leader>lm` | `:CoverageSummary` | Display coverage summary |
 | `<leader>lt` | `:CoverageToggle` | Toggle coverage display |
 | `<leader>mc` | Coverage toggle | Quick coverage toggle |
 | `<leader>mx` | Coverage summary | Quick coverage summary |
+
+> Note: for Vitest projects, `vim-test` handles nearest/file/suite/last execution in a sticky terminal split. `neotest` summary/watch/debug/output features remain available for Jest and the other configured language adapters.
 
 ### **File Explorer & Navigation**
 

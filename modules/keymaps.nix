@@ -238,56 +238,56 @@
       mode = "n";
       key = "<leader>ts";
       options.silent = true;
-      action = "<cmd>:Neotest summary<CR>";
+      action = "<cmd>:SmartTestSummary<CR>";
       options.desc = "Show test panel";
     }
     {
       mode = "n";
       key = "<leader>tr";
       options.silent = true;
-      action = "<cmd>:lua require('neotest').run.run(vim.loop.cwd())<CR>";
+      action = "<cmd>:SmartTestSuite<CR>";
       options.desc = "Run all tests";
     }
     {
       mode = "n";
       key = "<leader>tf";
       options.silent = true;
-      action = "<cmd>:lua require('neotest').run.run(vim.fn.expand('%'))<CR>";
+      action = "<cmd>:SmartTestFile<CR>";
       options.desc = "Run current file tests";
     }
     {
       mode = "n";
       key = "<leader>tn";
       options.silent = true;
-      action = "<cmd>:lua require('neotest').run.run()<CR>";
+      action = "<cmd>:SmartTestNearest<CR>";
       options.desc = "Run nearest test";
     }
     {
       mode = "n";
       key = "<leader>tl";
       options.silent = true;
-      action = "<cmd>:lua require('neotest').run.run_last()<CR>";
+      action = "<cmd>:SmartTestLast<CR>";
       options.desc = "Run last test";
     }
     {
       mode = "n";
       key = "<leader>tw";
       options.silent = true;
-      action = "<cmd>:lua require('neotest').watch.toggle(vim.fn.expand('%'))<CR>";
-      options.desc = "Toggle watch current file (neotest)";
+      action = "<cmd>:SmartTestWatch<CR>";
+      options.desc = "Toggle watch current file";
     }
     {
       mode = "n";
       key = "<leader>td";
       options.silent = true;
-      action = "<cmd>:lua require('neotest').run.run({strategy = 'dap'})<CR>";
+      action = "<cmd>:SmartTestDebug<CR>";
       options.desc = "Debug nearest test";
     }
     {
       mode = "n";
       key = "<leader>to";
       options.silent = true;
-      action = "<cmd>:Neotest output<CR>";
+      action = "<cmd>:SmartTestOutput<CR>";
       options.desc = "Show test output";
     }
 
